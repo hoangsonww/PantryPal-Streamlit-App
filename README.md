@@ -70,6 +70,13 @@ UNSPLASH_ACCESS_KEY=<YOUR_UNSPLASH_ACCESS_KEY>
 - **GOOGLE_AI_API_KEY**: Your Google Cloud API key for the Generative AI (Gemini) API.  
 - **UNSPLASH_ACCESS_KEY**: Your Unsplash Access Key (register at https://unsplash.com/developers).
 
+Alternatively, create a `.streamlit/secrets.toml` file with the same variables:
+
+```toml
+# .streamlit/secrets.toml
+GOOGLE_AI_API_KEY = "<YOUR_GOOGLE_GEMINI_API_KEY>"
+UNSPLASH_ACCESS_KEY = "<YOUR_UNSPLASH_ACCESS_KEY>"
+```
 
 ## 📂 Directory Structure
 
