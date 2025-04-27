@@ -1,63 +1,83 @@
 [
   {
-    "id": "47d775e4a82e453a9de54b554f1628a8",
-    "timestamp": "2025-04-27T01:59:08.215628",
+    "id": "34f632e564f14da682710c5d9e65d621",
+    "timestamp": "2025-04-27T02:21:06.894804",
     "recipe": {
-      "name": "Garlic Fried Rice",
+      "name": "Roasted Chicken with Lemon and Herbs",
       "ingredients": [
-        "Rice",
-        "Garlic",
-        "Soy Sauce",
-        "Vegetable Oil",
-        "Green Onions"
+        "Chicken pieces",
+        "Lemon",
+        "Olive oil",
+        "Fresh rosemary",
+        "Fresh thyme",
+        "Salt",
+        "Black pepper"
       ],
       "instructions": [
-        "Rinse the rice and cook according to package directions.",
-        "Mince the garlic and finely chop the green onions.",
-        "Heat the vegetable oil in a wok or large skillet over medium-high heat.",
-        "Add the minced garlic and cook until fragrant (about 30 seconds).",
-        "Add the cooked rice to the wok and stir-fry for 2-3 minutes.",
-        "Pour in the soy sauce and stir to combine.",
-        "Garnish with chopped green onions before serving."
+        "Preheat oven to 400\u00b0F (200\u00b0C).",
+        "Rinse chicken pieces and pat dry.",
+        "In a bowl, combine olive oil, lemon juice, rosemary, thyme, salt, and pepper.",
+        "Add chicken pieces and toss to coat evenly.",
+        "Arrange chicken in a single layer in a roasting pan.",
+        "Roast for 30-40 minutes, or until chicken is cooked through and juices run clear."
       ],
       "nutrition": {
-        "calories": "200 per serving",
-        "protein": "5g per serving",
-        "carbohydrates": "30g per serving",
-        "fat": "5g per serving"
+        "calories": "Approximately 350 calories per serving",
+        "protein": "Approximately 40g per serving",
+        "fat": "Approximately 20g per serving",
+        "carbohydrates": "Approximately 2g per serving"
       },
       "shopping_list": [
-        "Rice",
-        "Garlic",
-        "Soy Sauce",
-        "Vegetable Oil",
-        "Green Onions"
+        "Chicken pieces",
+        "Lemon",
+        "Olive oil",
+        "Fresh rosemary",
+        "Fresh thyme",
+        "Salt",
+        "Black pepper"
       ]
     },
     "recipe_ings": [
-      "Rice",
-      "Garlic",
-      "Soy Sauce",
-      "Vegetable Oil",
-      "Green Onions"
+      "Chicken pieces",
+      "Lemon",
+      "Olive oil",
+      "Fresh rosemary",
+      "Fresh thyme",
+      "Salt",
+      "Black pepper"
     ],
-    "image_url": "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDM1MjN8MHwxfHNlYXJjaHwxfHxHYXJsaWMlMjBGcmllZCUyMFJpY2UlMjByZWNpcGUlMjBmb29kfGVufDB8fHx8MTc0NTczMzU0NXww&ixlib=rb-4.0.3&q=80&w=1080",
+    "image_url": "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDM1MjN8MHwxfHNlYXJjaHwxfHxSb2FzdGVkJTIwQ2hpY2tlbiUyMHdpdGglMjBMZW1vbiUyMGFuZCUyMEhlcmJzJTIwcmVjaXBlJTIwZm9vZHxlbnwwfHx8fDE3NDU3MzQ4NTB8MA&ixlib=rb-4.0.3&q=80&w=1080",
     "user_ings": [
-      "rice",
-      "garlic"
+      "chicken"
     ],
     "substitutions": {
-      "Soy Sauce": [
-        "Coconut aminos",
-        "Tamari"
+      "Chicken pieces": [
+        "Chicken thighs",
+        "Chicken drumsticks"
       ],
-      "Vegetable Oil": [
-        "Avocado oil",
-        "Olive oil"
+      "Lemon": [
+        "Lime",
+        "White vinegar"
       ],
-      "Green Onions": [
-        "Scallions",
-        "Chives"
+      "Olive oil": [
+        "Vegetable oil",
+        "Canola oil"
+      ],
+      "Fresh rosemary": [
+        "Dried rosemary",
+        "Oregano"
+      ],
+      "Fresh thyme": [
+        "Dried thyme",
+        "Marjoram"
+      ],
+      "Salt": [
+        "Sea salt",
+        "Kosher salt"
+      ],
+      "Black pepper": [
+        "White pepper",
+        "Chili powder"
       ]
     }
   }

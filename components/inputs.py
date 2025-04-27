@@ -4,20 +4,17 @@ import streamlit as st
 def get_user_input():
     """
     Get user input from the sidebar for ingredients, dietary restrictions, servings, and actions.
-    The sidebar includes sections for ingredients, dietary restrictions, servings, and actions
-    (generate recipe, clear history, surprise me). Each section has a title and helper text for guidance.
-
-    :return: A tuple containing:
-                - ingredients: List of ingredients entered by the user.
-                - restrictions: List of dietary restrictions selected by the user.
-                - servings: Number of servings selected by the user.
-                - do_generate: Boolean indicating if the user clicked "Generate Recipe".
-                - do_clear: Boolean indicating if the user clicked "Clear All History".
-                - do_random: Boolean indicating if the user clicked "Surprise Me!".
+    Returns:
+      - ingredients: list[str]
+      - restrictions: list[str]
+      - servings: int
+      - do_generate: bool
+      - do_clear: bool
+      - do_random: bool
     """
+
     # ── Sidebar CSS for accent borders & spacing ──
-    st.sidebar.markdown(
-        """
+    st.sidebar.markdown("""
         <style>
           .sidebar-section {
             border-left: 4px solid #2c3e50;
@@ -36,13 +33,15 @@ def get_user_input():
             margin-bottom: 0.75rem;
           }
           /* tighten up margins between controls */
-          .stTextInput, .stMultiselect, .stSlider {
+          .stTextInput, .stMultiselect, .stSlider, .stButton > button {
             margin-bottom: 0.75rem !important;
           }
+          .stSidebar caption {
+            color: #AA0000 !important;
+            font-size: 0.85rem;
+          }
         </style>
-        """,
-        unsafe_allow_html=True
-    )
+    """, unsafe_allow_html=True)
 
     # ── Top-level instructions ─────────────────────
     st.sidebar.markdown("## 🍲 PantryPal Settings")
@@ -107,9 +106,26 @@ def get_user_input():
         '<p class="helper-text">Generate a recipe, surprise yourself, or clear history.</p>',
         unsafe_allow_html=True
     )
-    do_generate = st.sidebar.button("🍴 Generate Recipe", use_container_width=True, key="do_generate")
-    do_random = st.sidebar.button("🎲 Surprise Me!", use_container_width=True, key="do_random")
-    do_clear = st.sidebar.button("🗑️ Clear All History", use_container_width=True, key="do_clear")
+    # disable Generate if no ingredients
+    generate_disabled = len(ingredients) == 0
+    do_generate = st.sidebar.button(
+        "🍴 Generate Recipe",
+        use_container_width=True,
+        key="do_generate",
+        disabled=generate_disabled
+    )
+    if generate_disabled:
+        st.sidebar.caption("Add at least one ingredient to enable this button.")
+    do_random = st.sidebar.button(
+        "🎲 Surprise Me!",
+        use_container_width=True,
+        key="do_random"
+    )
+    do_clear = st.sidebar.button(
+        "🗑️ Clear All History",
+        use_container_width=True,
+        key="do_clear"
+    )
     st.sidebar.markdown('</div>', unsafe_allow_html=True)
 
     return ingredients, restrictions, servings, do_generate, do_clear, do_random
