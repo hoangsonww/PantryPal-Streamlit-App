@@ -1,6 +1,7 @@
 import requests
 import streamlit as st
 
+
 class UnsplashImageFetcher:
     """
     Fetches images from Unsplash based on a search query.
@@ -34,5 +35,5 @@ class UnsplashImageFetcher:
         }
         r = requests.get(url, params=params, timeout=5)
         if r.ok:
-            return [res["urls"]["regular"] for res in r.json().get("results",[])]
+            return [res["urls"]["regular"] for res in r.json().get("results", [])]
         return []

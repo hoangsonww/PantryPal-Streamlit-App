@@ -1,7 +1,8 @@
 import json
 import uuid
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+
 
 class Storage:
     """
@@ -42,14 +43,14 @@ class Storage:
         """
         history = self.load_history()
         entry = {
-            "id":           uuid.uuid4().hex,
+            "id": uuid.uuid4().hex,
             # Local time instead of UTC
-            "timestamp":    datetime.now().isoformat(),
-            "recipe":       recipe,
-            "recipe_ings":  recipe.get("ingredients", []),
-            "image_url":    image_url,
-            "user_ings":    user_ings,
-            "substitutions": substitutions
+            "timestamp": datetime.now().isoformat(),
+            "recipe": recipe,
+            "recipe_ings": recipe.get("ingredients", []),
+            "image_url": image_url,
+            "user_ings": user_ings,
+            "substitutions": substitutions,
         }
         history.append(entry)
         self.path.write_text(json.dumps(history, indent=2))

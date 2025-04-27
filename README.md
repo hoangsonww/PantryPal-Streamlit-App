@@ -13,17 +13,28 @@ PantryPal is a Streamlit web app that turns the ingredients you have on hand (pl
 - **Persistent recipe history** with delete capability  
 - **Download recipe** as JSON, Markdown, or plain TXT  
 
-<p align="center"> <img src="https://img.shields.io/badge/Python-%3E%3D3.9-3776AB?style=for-the-badge&logo=python" alt="Python"> <img src="https://img.shields.io/badge/Streamlit-v1.44.1-FE4A49?style=for-the-badge&logo=streamlit" alt="Streamlit"> <img src="https://img.shields.io/badge/Google%20GenAI-Gemini-blue?style=for-the-badge&logo=google" alt="Google Gemini AI"> <img src="https://img.shields.io/badge/Unsplash-API-0052CC?style=for-the-badge&logo=unsplash" alt="Unsplash API"> <img src="https://img.shields.io/badge/python--dotenv-latest-212121?style=for-the-badge&logo=dotenv" alt="python-dotenv"> <img src="https://img.shields.io/badge/pandas-latest-150458?style=for-the-badge&logo=pandas" alt="pandas"> <img src="https://img.shields.io/badge/Altair-latest-F47721?style=for-the-badge&logo=altair" alt="Altair"> </p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-%3E%3D3.9-3776AB?style=for-the-badge&logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Streamlit-v1.44.1-FE4A49?style=for-the-badge&logo=streamlit" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Google%20GenAI-Gemini-blue?style=for-the-badge&logo=google" alt="Google Gemini AI">
+  <img src="https://img.shields.io/badge/Unsplash-API-0052CC?style=for-the-badge&logo=unsplash" alt="Unsplash API">
+  <img src="https://img.shields.io/badge/python--dotenv-latest-212121?style=for-the-badge&logo=dotenv" alt="python-dotenv">
+  <img src="https://img.shields.io/badge/pandas-latest-150458?style=for-the-badge&logo=pandas" alt="pandas">
+  <img src="https://img.shields.io/badge/Altair-latest-F47721?style=for-the-badge&logo=altair" alt="Altair">
+  <img src="https://img.shields.io/badge/Black-23.7.0-000000?style=for-the-badge" alt="Black">
+  <img src="https://img.shields.io/badge/isort-5.12.0-007ACC?style=for-the-badge" alt="isort">
+  <img src="https://img.shields.io/badge/License-MIT-4E9F3D?style=for-the-badge&logo=github" alt="MIT License">
+</p>
 
----
+## 🌐 Live App
+
+Try it now in your browser: [PantryPal Live App](https://pantrypal-app.streamlit.app)  
 
 ## 🛠️ Prerequisites
 
 - Python 3.9 or later  
 - A Google Cloud API key with access to the Generative AI (Gemini) API  
 - An Unsplash developer access key for fetching food images  
-
----
 
 ## 🚀 Installation
 
@@ -151,13 +162,13 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 ## 🙏 Acknowledgments
 
-- [Streamlit](https://streamlit.io/) for the web framework
-- [Google Gemini AI](https://cloud.google.com/generative-ai) for recipe generation
-- [Unsplash](https://unsplash.com/) for beautiful images
-- [Altair](https://altair-viz.github.io/) for interactive charts
-- [Python-dotenv](https://pypi.org/project/python-dotenv/) for environment variable management
-- [pandas](https://pandas.pydata.org/) for data manipulation
+- [Streamlit](https://streamlit.io/) for the web framework  
+- [Google Gemini AI](https://cloud.google.com/generative-ai) for recipe generation  
+- [Unsplash](https://unsplash.com/) for beautiful images  
+- [Altair](https://altair-viz.github.io/) for interactive charts  
+- [Python-dotenv](https://pypi.org/project/python-dotenv/) for environment variable management  
+- [pandas](https://pandas.pydata.org/) for data manipulation  
 
 ---
 
-Thank you for checking out PantryPal! We hope it makes your cooking adventures easier and more fun. If you have any questions or suggestions, feel free to reach out!
+Thank you for checking out PantryPal! We hope it makes your cooking adventures easier and more fun. If you have any questions or suggestions, feel free to reach out!  

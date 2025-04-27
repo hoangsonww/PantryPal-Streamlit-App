@@ -1,4 +1,5 @@
 import json
+
 from google import genai
 from google.genai import types
 
@@ -50,8 +51,8 @@ class GenAIRecipeGenerator:
                 top_p=0.95,
                 top_k=64,
                 max_output_tokens=8192,
-                response_mime_type="application/json"
-            )
+                response_mime_type="application/json",
+            ),
         )
         return json.loads(resp.text)
 
@@ -83,7 +84,7 @@ class GenAIRecipeGenerator:
                 top_p=0.9,
                 top_k=32,
                 max_output_tokens=512,
-                response_mime_type="application/json"
-            )
+                response_mime_type="application/json",
+            ),
         )
         return json.loads(resp.text)

@@ -5,3 +5,5 @@ streamlit-tags
 altair
 pandas
 requests
+black
+isort

@@ -1,8 +1,9 @@
-import streamlit as st
-import altair as alt
-import pandas as pd
 import json
 import re
+
+import altair as alt
+import pandas as pd
+import streamlit as st
 
 
 def _parse_numeric(v: str) -> float:
@@ -17,12 +18,12 @@ def _parse_numeric(v: str) -> float:
 
 
 def display_recipe(
-        recipe: dict,
-        recipe_ings: list,
-        image_url: str,
-        user_ings: list,
-        substitutions,
-        key_prefix: str = "default"
+    recipe: dict,
+    recipe_ings: list,
+    image_url: str,
+    user_ings: list,
+    substitutions,
+    key_prefix: str = "default",
 ):
     """
     Displays a recipe with its ingredients, instructions, nutrition information, and download options.
@@ -43,11 +44,13 @@ def display_recipe(
     st.subheader("📝 Ingredients")
     missing = []
     for idx, ing in enumerate(recipe_ings):
-        label = f"{ing['item']} — {ing['amount']}" if isinstance(ing, dict) else str(ing)
+        label = (
+            f"{ing['item']} — {ing['amount']}" if isinstance(ing, dict) else str(ing)
+        )
         checked = st.checkbox(
             label,
             value=label.lower() in (u.lower() for u in user_ings),
-            key=f"{key_prefix}_ing_{idx}"
+            key=f"{key_prefix}_ing_{idx}",
         )
         if not checked:
             missing.append(label)
@@ -62,7 +65,7 @@ def display_recipe(
             data="\n".join(missing),
             file_name="shopping_list.txt",
             mime="text/plain",
-            key=f"{key_prefix}_dl_shop"
+            key=f"{key_prefix}_dl_shop",
         )
 
     # — Nutrition Charts
@@ -76,18 +79,22 @@ def display_recipe(
         with c1:
             st.subheader("📊 Nutrient Amounts")
             st.altair_chart(
-                alt.Chart(df).mark_bar()
+                alt.Chart(df)
+                .mark_bar()
                 .encode(x="Nutrient", y="Amount", tooltip=["Nutrient", "Amount"])
                 .properties(height=200),
-                use_container_width=True
+                use_container_width=True,
             )
         with c2:
             st.subheader("🍩 Nutrient Proportions")
             st.altair_chart(
-                alt.Chart(df).mark_arc(innerRadius=50)
-                .encode(theta="Amount", color="Nutrient", tooltip=["Nutrient", "Amount"])
+                alt.Chart(df)
+                .mark_arc(innerRadius=50)
+                .encode(
+                    theta="Amount", color="Nutrient", tooltip=["Nutrient", "Amount"]
+                )
                 .properties(height=200),
-                use_container_width=True
+                use_container_width=True,
             )
 
     # — Difficulty
@@ -126,7 +133,7 @@ def display_recipe(
         data=json_str,
         file_name=f"{recipe['name'].replace(' ', '_')}.json",
         mime="application/json",
-        key=f"{key_prefix}_dl_json"
+        key=f"{key_prefix}_dl_json",
     )
 
     # — Download Markdown
@@ -146,13 +153,15 @@ def display_recipe(
         data="\n".join(md),
         file_name=f"{recipe['name'].replace(' ', '_')}.md",
         mime="text/markdown",
-        key=f"{key_prefix}_dl_md"
+        key=f"{key_prefix}_dl_md",
     )
 
     # — Download Plain TXT
-    txt = [recipe['name'], "", "Ingredients:"] + [f"- {l}" for l in recipe_ings]
+    txt = [recipe["name"], "", "Ingredients:"] + [f"- {l}" for l in recipe_ings]
     txt += ["", "Instructions:"] + [f"{i}. {s}" for i, s in enumerate(steps, 1)]
-    txt += ["", "Nutrition:"] + [f"- {n}: {v}" for n, v in recipe.get("nutrition", {}).items()]
+    txt += ["", "Nutrition:"] + [
+        f"- {n}: {v}" for n, v in recipe.get("nutrition", {}).items()
+    ]
     if missing:
         txt += ["", "Shopping List:"] + [f"- {l}" for l in missing]
     st.download_button(
@@ -160,5 +169,5 @@ def display_recipe(
         data="\n".join(txt),
         file_name=f"{recipe['name'].replace(' ', '_')}.txt",
         mime="text/plain",
-        key=f"{key_prefix}_dl_txt"
+        key=f"{key_prefix}_dl_txt",
     )

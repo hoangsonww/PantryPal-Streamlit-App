@@ -14,7 +14,8 @@ def get_user_input():
     """
 
     # ── Sidebar CSS for accent borders & spacing ──
-    st.sidebar.markdown("""
+    st.sidebar.markdown(
+        """
         <style>
           .sidebar-section {
             border-left: 4px solid #2c3e50;
@@ -41,53 +42,69 @@ def get_user_input():
             font-size: 0.85rem;
           }
         </style>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
     # ── Top-level instructions ─────────────────────
     st.sidebar.markdown("## 🍲 PantryPal Settings")
-    st.sidebar.markdown("> Enter what’s in your pantry, any preferences, then hit **Generate**.")
+    st.sidebar.markdown(
+        "> Enter what’s in your pantry, any preferences, then hit **Generate**."
+    )
 
     # ── Ingredients ────────────────────────────────
     st.sidebar.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-    st.sidebar.markdown('<div class="section-title">🥕 Ingredients</div>', unsafe_allow_html=True)
+    st.sidebar.markdown(
+        '<div class="section-title">🥕 Ingredients</div>', unsafe_allow_html=True
+    )
     st.sidebar.markdown(
         '<p class="helper-text">List your ingredients as a comma-separated list.</p>',
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
     ingredients_text = st.sidebar.text_input(
         label="Ingredients",
         placeholder="e.g. chicken, rice, tomato, garlic",
         label_visibility="visible",
-        key="ingredients_text"
+        key="ingredients_text",
     )
-    ingredients = [
-        item.strip() for item in ingredients_text.split(",")
-        if item.strip()
-    ]
-    st.sidebar.markdown('</div>', unsafe_allow_html=True)
+    ingredients = [item.strip() for item in ingredients_text.split(",") if item.strip()]
+    st.sidebar.markdown("</div>", unsafe_allow_html=True)
 
     # ── Dietary Restrictions ───────────────────────
     st.sidebar.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-    st.sidebar.markdown('<div class="section-title">⚠️ Dietary Restrictions</div>', unsafe_allow_html=True)
+    st.sidebar.markdown(
+        '<div class="section-title">⚠️ Dietary Restrictions</div>',
+        unsafe_allow_html=True,
+    )
     st.sidebar.markdown(
         '<p class="helper-text">Select any allergies or dietary preferences.</p>',
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
     restrictions = st.sidebar.multiselect(
         label="Restrictions",
-        options=["Vegetarian", "Vegan", "Gluten-Free", "Dairy-Free", "Nut-Free", "Halal", "Kosher"],
+        options=[
+            "Vegetarian",
+            "Vegan",
+            "Gluten-Free",
+            "Dairy-Free",
+            "Nut-Free",
+            "Halal",
+            "Kosher",
+        ],
         default=[],
         label_visibility="visible",
-        key="restrictions"
+        key="restrictions",
     )
-    st.sidebar.markdown('</div>', unsafe_allow_html=True)
+    st.sidebar.markdown("</div>", unsafe_allow_html=True)
 
     # ── Servings ───────────────────────────────────
     st.sidebar.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-    st.sidebar.markdown('<div class="section-title">🍽️ Servings</div>', unsafe_allow_html=True)
+    st.sidebar.markdown(
+        '<div class="section-title">🍽️ Servings</div>', unsafe_allow_html=True
+    )
     st.sidebar.markdown(
         '<p class="helper-text">How many portions do you need?</p>',
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
     servings = st.sidebar.slider(
         label="Servings",
@@ -95,16 +112,18 @@ def get_user_input():
         max_value=12,
         value=2,
         format="%d servings",
-        key="servings"
+        key="servings",
     )
-    st.sidebar.markdown('</div>', unsafe_allow_html=True)
+    st.sidebar.markdown("</div>", unsafe_allow_html=True)
 
     # ── Actions ────────────────────────────────────
     st.sidebar.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
-    st.sidebar.markdown('<div class="section-title">▶️ Actions</div>', unsafe_allow_html=True)
+    st.sidebar.markdown(
+        '<div class="section-title">▶️ Actions</div>', unsafe_allow_html=True
+    )
     st.sidebar.markdown(
         '<p class="helper-text">Generate a recipe, surprise yourself, or clear history.</p>',
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
     # disable Generate if no ingredients
     generate_disabled = len(ingredients) == 0
@@ -112,20 +131,16 @@ def get_user_input():
         "🍴 Generate Recipe",
         use_container_width=True,
         key="do_generate",
-        disabled=generate_disabled
+        disabled=generate_disabled,
     )
     if generate_disabled:
         st.sidebar.caption("Add at least one ingredient to enable this button.")
     do_random = st.sidebar.button(
-        "🎲 Surprise Me!",
-        use_container_width=True,
-        key="do_random"
+        "🎲 Surprise Me!", use_container_width=True, key="do_random"
     )
     do_clear = st.sidebar.button(
-        "🗑️ Clear All History",
-        use_container_width=True,
-        key="do_clear"
+        "🗑️ Clear All History", use_container_width=True, key="do_clear"
     )
-    st.sidebar.markdown('</div>', unsafe_allow_html=True)
+    st.sidebar.markdown("</div>", unsafe_allow_html=True)
 
     return ingredients, restrictions, servings, do_generate, do_clear, do_random

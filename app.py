@@ -1,15 +1,15 @@
-import os
 import json
+import os
 import random
 import traceback
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 import streamlit as st
 from dotenv import load_dotenv
 
-from components.inputs import get_user_input
 from components.display import display_recipe
+from components.inputs import get_user_input
 from utils.genai_client import GenAIRecipeGenerator
 from utils.image_fetcher import UnsplashImageFetcher
 from utils.storage import Storage
@@ -56,12 +56,12 @@ st.markdown(
       .stButton>button:hover { opacity:0.9; }
     </style>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 # ─── Load env & init clients ─────────────────────
 load_dotenv()
-GOOGLE_KEY   = st.secrets["GOOGLE_AI_API_KEY"]
+GOOGLE_KEY = st.secrets["GOOGLE_AI_API_KEY"]
 UNSPLASH_KEY = st.secrets["UNSPLASH_ACCESS_KEY"]
 
 if not GOOGLE_KEY:
@@ -69,9 +69,9 @@ if not GOOGLE_KEY:
 if not UNSPLASH_KEY:
     st.sidebar.error("🖼️ Missing UNSPLASH_ACCESS_KEY — Images disabled.")
 
-ai_gen    = GenAIRecipeGenerator(GOOGLE_KEY)    if GOOGLE_KEY   else None
+ai_gen = GenAIRecipeGenerator(GOOGLE_KEY) if GOOGLE_KEY else None
 img_fetch = UnsplashImageFetcher(UNSPLASH_KEY) if UNSPLASH_KEY else None
-storage   = Storage(Path("recipe_history.json"))
+storage = Storage(Path("recipe_history.json"))
 
 # ─── Sidebar inputs ──────────────────────────────
 ingredients, restrictions, servings, do_generate, do_clear, do_random = get_user_input()
@@ -97,12 +97,14 @@ try:
                 recipe = ai_gen.generate([], restrictions, servings)
                 recipe_ings = normalize_ingredients(recipe["ingredients"])
                 recipe["ingredients"] = recipe_ings
-                images = img_fetch.fetch_images(recipe["name"], n=5) if img_fetch else []
+                images = (
+                    img_fetch.fetch_images(recipe["name"], n=5) if img_fetch else []
+                )
                 st.session_state.temp = {
-                    "recipe":        recipe,
-                    "recipe_ings":   recipe_ings,
+                    "recipe": recipe,
+                    "recipe_ings": recipe_ings,
                     "image_options": images,
-                    "user_ings":     []
+                    "user_ings": [],
                 }
                 st.session_state.pop("current", None)
 
@@ -117,12 +119,14 @@ try:
                 recipe = ai_gen.generate(ingredients, restrictions, servings)
                 recipe_ings = normalize_ingredients(recipe["ingredients"])
                 recipe["ingredients"] = recipe_ings
-                images = img_fetch.fetch_images(recipe["name"], n=5) if img_fetch else []
+                images = (
+                    img_fetch.fetch_images(recipe["name"], n=5) if img_fetch else []
+                )
                 st.session_state.temp = {
-                    "recipe":        recipe,
-                    "recipe_ings":   recipe_ings,
+                    "recipe": recipe,
+                    "recipe_ings": recipe_ings,
                     "image_options": images,
-                    "user_ings":     ingredients
+                    "user_ings": ingredients,
                 }
                 st.session_state.pop("current", None)
 
@@ -136,7 +140,7 @@ try:
             cur["image_url"],
             cur["user_ings"],
             cur["substitutions"],
-            key_prefix="current"
+            key_prefix="current",
         )
 
     # ── Else if staging exists, show image picker ──
@@ -159,19 +163,20 @@ try:
                 "Select an image:",
                 options=list(range(len(opts))),
                 format_func=lambda i: f"Option {i + 1}",
-                index=0
+                index=0,
             )
             confirmed = st.button("Confirm Image")
 
         if not confirmed:
             st.stop()
 
-        image_url   = opts[choice] if (opts and choice is not None) else ""
-        recipe      = temp["recipe"]
+        image_url = opts[choice] if (opts and choice is not None) else ""
+        recipe = temp["recipe"]
         recipe_ings = temp["recipe_ings"]
-        user_ings   = temp["user_ings"]
-        missing     = [
-            ing for ing in recipe_ings
+        user_ings = temp["user_ings"]
+        missing = [
+            ing
+            for ing in recipe_ings
             if ing.lower() not in {u.lower() for u in user_ings}
         ]
         subs = ai_gen.get_substitutions(missing) if (ai_gen and missing) else {}
@@ -184,7 +189,8 @@ try:
     else:
         if not st.session_state.history:
             # Beautiful welcome panel when no recipes saved
-            st.markdown("""
+            st.markdown(
+                """
                 <div style="text-align:center; margin-top:4rem; color:#2c3e50;">
                   <h1 style="font-size:2.5rem; margin-bottom:0.5rem;">👋 Welcome to PantryPal!</h1>
                   <p style="font-size:1.2rem; max-width:600px; margin:0 auto 1.5rem;">
@@ -195,13 +201,15 @@ try:
                        alt="Cooking GIF"
                        style="max-width:300px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);" />
                 </div>
-            """, unsafe_allow_html=True)
+            """,
+                unsafe_allow_html=True,
+            )
         else:
             st.header("🗂️ Recipe History")
             for entry in reversed(st.session_state.history):
-                rid  = entry["id"]
+                rid = entry["id"]
                 name = entry["recipe"]["name"]
-                ts   = entry["timestamp"][:19].replace("T"," ")
+                ts = entry["timestamp"][:19].replace("T", " ")
                 with st.expander(f"{name} — {ts}", expanded=False):
                     display_recipe(
                         entry["recipe"],
@@ -209,7 +217,7 @@ try:
                         entry["image_url"],
                         entry["user_ings"],
                         entry["substitutions"],
-                        key_prefix=f"hist_{rid}"
+                        key_prefix=f"hist_{rid}",
                     )
                     if st.button("🗑️ Delete Recipe", key=f"del_{rid}"):
                         storage.delete_recipe(rid)
