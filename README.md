@@ -147,3 +147,17 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 - [Son Nguyen](https://github.com/hoangsonww)
 
+---
+
+## 🙏 Acknowledgments
+
+- [Streamlit](https://streamlit.io/) for the web framework
+- [Google Gemini AI](https://cloud.google.com/generative-ai) for recipe generation
+- [Unsplash](https://unsplash.com/) for beautiful images
+- [Altair](https://altair-viz.github.io/) for interactive charts
+- [Python-dotenv](https://pypi.org/project/python-dotenv/) for environment variable management
+- [pandas](https://pandas.pydata.org/) for data manipulation
+
+---
+
+Thank you for checking out PantryPal! We hope it makes your cooking adventures easier and more fun. If you have any questions or suggestions, feel free to reach out!
