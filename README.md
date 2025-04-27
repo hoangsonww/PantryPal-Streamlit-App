@@ -186,9 +186,7 @@ isort .
 
 - **Max output tokens** & **temperature** for AI calls can be adjusted in `utils/genai_client.py`.  
 - **Caching** for images is handled in `utils/image_fetcher.py` (TTL = 1 hour).  
-- **History storage** uses a simple JSON file (`recipe_history.json`) in the project root.  
-
-> For now, the app uses a JSON file for history storage. Future versions may include a database option (e.g., SQLite, PostgreSQL) for better scalability and performance.
+- **History** uses Local Storage to persist data across sessions.
 
 ## 🐳 Docker Support
 
