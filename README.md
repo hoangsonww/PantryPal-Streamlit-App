@@ -30,6 +30,8 @@ PantryPal is a Streamlit web app that turns the ingredients you have on hand (pl
 
 Try it now in your browser: **[https://pantrypal-app.streamlit.app](https://pantrypal-app.streamlit.app)**. Feel free to explore and generate recipes with your pantry items!
 
+### Home Page
+
 ## 🛠️ Prerequisites
 
 - Python 3.9 or later  
