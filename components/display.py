@@ -61,7 +61,7 @@ def display_recipe(
         for line in missing:
             st.write(f"• {line}")
         st.download_button(
-            "Download shopping list (TXT)",
+            "📋 Download shopping list (TXT)",
             data="\n".join(missing),
             file_name="shopping_list.txt",
             mime="text/plain",
@@ -126,7 +126,7 @@ def display_recipe(
     # — Downloads (JSON, Markdown, TXT)
     json_str = json.dumps(recipe, indent=2)
     st.download_button(
-        "Download JSON",
+        "📄Download JSON",
         data=json_str,
         file_name=f"{recipe['name'].replace(' ', '_')}.json",
         mime="application/json",
@@ -146,7 +146,7 @@ def display_recipe(
     if missing:
         md += ["", "## Shopping List"] + [f"- {l}" for l in missing]
     st.download_button(
-        "Download Markdown",
+        "🔖 Download Markdown",
         data="\n".join(md),
         file_name=f"{recipe['name'].replace(' ', '_')}.md",
         mime="text/markdown",
@@ -162,7 +162,7 @@ def display_recipe(
     if missing:
         txt += ["", "## Shopping List"] + [f"- {l}" for l in missing]
     st.download_button(
-        "Download Plain TXT",
+        "🧾 Download Plain TXT",
         data="\n".join(txt),
         file_name=f"{recipe['name'].replace(' ', '_')}.txt",
         mime="text/plain",

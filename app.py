@@ -306,7 +306,7 @@ try:
                 format_func=lambda i: f"Option {i+1}",
             )
 
-            if st.button("Confirm Image (click twice)"):
+            if st.button("Confirm Image (click twice)  ✅"):
                 image_url = opts[choice]
                 recipe = temp["recipe"]
                 recipe_ings = temp["recipe_ings"]

@@ -29,27 +29,30 @@ class GenAIRecipeGenerator:
         :param serves: The number of servings.
         :return: The generated recipe as a JSON object.
         """
-        # Base system prompt
+        # Strict JSON‐only system prompt
         sys = (
             "You are a world-class chef AI.  "
-            "Given ingredients, dietary restrictions, and number of servings,  "
-            "respond with _ONLY_ JSON with these keys:\n"
-            "  • name: string\n"
-            "  • ingredients: array of {item: string, amount: string}\n"
-            "  • instructions: array of strings\n"
-            "  • nutrition: object mapping nutrient names to strings\n"
-            "  • shopping_list: array of strings\n"
+            "Given ingredients, dietary restrictions, and number of servings, RESPOND WITH STRICTLY VALID JSON AND NOTHING ELSE.  "
+            "Your output MUST be parseable by json.loads without error.  "
+            "Use double quotes for all keys and string values.  "
+            "Do NOT include single quotes, trailing commas, comments, code fences, markdown, or any extra text.  "
+            "Output JSON must have exactly these keys:\n"
+            '  "name": string,\n'
+            '  "ingredients": [{"item": string, "amount": string}, ...],\n'
+            '  "instructions": [string, ...],\n'
+            '  "nutrition": {string: string, ...},\n'
+            '  "shopping_list": [string, ...]\n'
+            "If the user gives no ingredients, generate a completely random recipe with a unique never-before-seen name."
         )
 
         # Detect “Surprise me!” calls (no ingredients)
         is_random = len(ings) == 0
         if is_random:
-            # 1) Increase randomness
             temp = 1.0
             top_p = 1.0
             top_k = 0
 
-            # 2) Pick a random cuisine & theme
+            # Pick a random cuisine & theme
             cuisines = [
                 "Moroccan",
                 "Korean",
@@ -77,13 +80,11 @@ class GenAIRecipeGenerator:
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
 
             sys += (
-                "For a random recipe, PLEASE be wildly creative and generate a unique dish each time.  "
-                f"Your theme is **{theme}** from **{cuisine} cuisine**, "
-                "and you must give it a never-seen-before name.  "
-                f"Use the current timestamp ({timestamp}) as inspiration.\n"
+                f"  For this random recipe, theme: {theme} from {cuisine} cuisine.  "
+                f"Include the timestamp {timestamp} in your creative process.  "
+                "Assign a never-before-seen name."
             )
         else:
-            # Defaults for user-specified recipes
             temp = 0.8
             top_p = 0.95
             top_k = 64
@@ -92,7 +93,7 @@ class GenAIRecipeGenerator:
             f"Ingredients: {', '.join(ings) if ings else 'None'}\n"
             f"Restrictions: {', '.join(restrs) or 'None'}\n"
             f"Servings: {serves}\n\n"
-            "Output _ONLY_ the JSON object."
+            "Output ONLY the JSON object."
         )
 
         resp = self.client.models.generate_content(
@@ -119,16 +120,18 @@ class GenAIRecipeGenerator:
         """
         sys = (
             "You are a culinary expert.  "
-            "Given a list of missing ingredients, output _ONLY_ a JSON object "
-            "where each key is the missing ingredient (string) and its value is an "
-            "array of exactly two substitute ingredient names (strings).  "
+            "Given a list of missing ingredients, output ONLY a valid JSON object "
+            "with double-quoted keys and string values.  "
+            "Each key is a missing ingredient, each value is an array of exactly two substitute ingredient names.  "
             "Example:\n"
             '{ "Spaghetti": ["Linguine","Fettuccine"], "Tomato": ["Cherry tomatoes","Crushed tomatoes"] }\n'
-            "Do not wrap it in any other structure or text."
+            "Do not include any extra text or formatting."
         )
-        prompt = f"Missing ingredients: {', '.join(missing)}.\nOutput _ONLY_ the JSON mapping."
+        prompt = (
+            f"Missing ingredients: {', '.join(missing)}.\nOutput ONLY the JSON mapping."
+        )
         resp = self.client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-2.0-flash-lite",
             contents=prompt,
             config=types.GenerateContentConfig(
                 system_instruction=sys,
