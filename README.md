@@ -36,8 +36,8 @@ PantryPal is a Streamlit web app that turns the ingredients you have on hand (pl
 2. **Create & activate a virtual environment**  
    ```bash
    python3 -m venv .venv
-   source .venv/bin/activate      # macOS/Linux
-   .venv\Scripts\activate         # Windows PowerShell
+   source .venv/bin/activate      # for macOS/Linux
+   .venv\Scripts\activate         # for Windows PowerShell
    ```
 
 3. **Install dependencies**  
