@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d9c65b9-1d2d-4644-8c29-92f7e288da7d" name="Changes" comment="Final: App working">
-      <change afterPath="$PROJECT_DIR$/.devcontainer/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.devcontainer/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/ingredient_frequency.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/nutrition_summary.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/analysis/trends_over_time.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shell/backup_history.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shell/clear_history.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shell/docker_up.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shell/fix_format.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shell/format_and_lint.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shell/open_local.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shell/run_local.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shell/update_requirements.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_utils_and_storage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/display.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/display.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipe_history.json" beforeDir="false" afterPath="$PROJECT_DIR$/recipe_history.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/genai_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/genai_client.py" afterDir="false" />
-    </list>
+    <list default="true" id="2d9c65b9-1d2d-4644-8c29-92f7e288da7d" name="Changes" comment="Final: App working" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -173,7 +149,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745767803277</updated>
       <workItem from="1745767804360" duration="216000" />
-      <workItem from="1745768023046" duration="5832000" />
+      <workItem from="1745768023046" duration="5873000" />
     </task>
     <task id="LOCAL-00001" summary="Final: App workin">
       <option name="closed" value="true" />
@@ -239,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745768688262</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1745773883569</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1745773883569</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +247,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PantryPal$python_analysis_ingredient_frequency_py.coverage" NAME="python analysis/ingredient_frequency.py Coverage Results" MODIFIED="1745773543327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PantryPal$python_analysis_nutrition_summary_py.coverage" NAME="python analysis/nutrition_summary.py Coverage Results" MODIFIED="1745773807601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PantryPal$python_analysis_nutrition_summary_py.coverage" NAME="python analysis/nutrition_summary.py Coverage Results" MODIFIED="1745773863220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PantryPal$python_analysis_trends_over_time_py.coverage" NAME="python analysis/trends_over_time.py Coverage Results" MODIFIED="1745773553822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

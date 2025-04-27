@@ -57,7 +57,6 @@ plt.ylabel("Amount per serving")
 plt.xticks(rotation=45)
 plt.tight_layout()
 
-# this will save to ./analysis/nutrition_summary.png
 plt.savefig("analysis/nutrition_summary.png")
 
 print("\n▶️ Plot saved to analysis/nutrition_summary.png")
