@@ -1,10 +1,13 @@
 import json
 import os
 import random
+import re
 import traceback
 from datetime import datetime
 from pathlib import Path
 
+import altair as alt
+import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
 
@@ -32,6 +35,118 @@ def normalize_ingredients(raw_ings):
         else:
             out.append(str(i))
     return out
+
+
+def render_analysis():
+    """
+    Load the recipe history and render three interactive Altair charts:
+      1) Nutrition boxplots
+      2) Recipes generated over time (line)
+      3) Top ingredients by frequency (bar)
+    """
+    history_path = Path("recipe_history.json")
+    if not history_path.exists():
+        st.error("📈 No recipe history found to analyze.")
+        return
+
+    with open(history_path) as f:
+        history = json.load(f)
+
+    # ─── Nutrition DataFrame ───────────────────────────────────
+    nutri_rows = []
+    for entry in history:
+        nutri = entry.get("recipe", {}).get("nutrition", {}) or {}
+        for key, val in nutri.items():
+            m = re.match(r"^\s*([\d\.]+)", val or "")
+            if m:
+                nutri_rows.append(
+                    {
+                        "name": entry["recipe"].get("name", "Unknown"),
+                        "metric": key,
+                        "value": float(m.group(1)),
+                    }
+                )
+
+    if nutri_rows:
+        df_nutri = pd.DataFrame(nutri_rows)
+        st.subheader("🍽️ Nutrition Distribution")
+        box = (
+            alt.Chart(df_nutri)
+            .mark_boxplot(extent="min-max")
+            .encode(
+                x=alt.X("metric:N", title="Nutrient"),
+                y=alt.Y("value:Q", title="Amount per serving"),
+                color=alt.Color("metric:N", legend=None),
+            )
+            .interactive()
+        )
+        st.altair_chart(box, use_container_width=True)
+    else:
+        st.info("No numeric nutrition data available.")
+
+    # ─── Recipes Over Time ─────────────────────────────────────
+    dates = []
+    for entry in history:
+        ts = entry.get("timestamp", "")
+        try:
+            dt = datetime.fromisoformat(ts.replace("Z", ""))
+            dates.append(dt.date())
+        except Exception:
+            pass
+
+    if dates:
+        df_time = (
+            pd.Series(dates)
+            .value_counts()
+            .rename_axis("date")
+            .reset_index(name="count")
+        )
+        df_time["date"] = pd.to_datetime(df_time["date"])
+        st.subheader("🕒 Recipes Generated Over Time")
+        line = (
+            alt.Chart(df_time)
+            .mark_line(point=True)
+            .encode(
+                x=alt.X("date:T", title="Date"),
+                y=alt.Y("count:Q", title="Recipes"),
+                tooltip=["date:T", "count:Q"],
+            )
+            .interactive()
+        )
+        st.altair_chart(line, use_container_width=True)
+    else:
+        st.info("No timestamp data available for trends.")
+
+    # ─── Top Ingredients ───────────────────────────────────────
+    all_ings = []
+    for entry in history:
+        for ing in entry.get("recipe", {}).get("ingredients", []):
+            if isinstance(ing, dict):
+                all_ings.append(ing.get("item", ing.get("name", str(ing))))
+            else:
+                all_ings.append(str(ing))
+    if all_ings:
+        freq = (
+            pd.Series([i.strip().lower() for i in all_ings])
+            .value_counts()
+            .reset_index(name="frequency")
+            .rename(columns={"index": "ingredient"})
+            .head(10)
+        )
+        st.subheader("🌶️ Top 10 Ingredients Used")
+        bar = (
+            alt.Chart(freq)
+            .mark_bar()
+            .encode(
+                y=alt.Y("ingredient:N", sort="-x", title=None),
+                x=alt.X("frequency:Q", title="Usage Count"),
+                tooltip=["ingredient:N", "frequency:Q"],
+            )
+            .interactive()
+        )
+        st.altair_chart(bar, use_container_width=True)
+    else:
+        st.info("No ingredients data available.")
 
 
 # ─── Page config ────────────────────────────────
@@ -75,12 +190,20 @@ storage = Storage(Path("recipe_history.json"))
 
 # ─── Sidebar inputs ──────────────────────────────
 ingredients, restrictions, servings, do_generate, do_clear, do_random = get_user_input()
+st.sidebar.markdown("### Analytics")
+st.sidebar.markdown("Track your recipe generation history and view trends over time.")
+view_stats = st.sidebar.button("📊 View Analytics")
 
 # ─── Load history once ────────────────────────────
 if "history" not in st.session_state:
     st.session_state.history = storage.load_history()
 
 try:
+    # If analytics requested, render and halt
+    if view_stats:
+        render_analysis()
+        st.stop()
+
     # ── Clear history ──────────────────────────────
     if do_clear:
         storage.clear_history()
@@ -130,7 +253,7 @@ try:
                 }
                 st.session_state.pop("current", None)
 
-    # ── If a recipe is current, show it ───────────
+    # ── Display current recipe ──────────────────────
     if "current" in st.session_state:
         cur = st.session_state.current
         st.title(f"🍲 {cur['recipe']['name']}")
@@ -143,14 +266,14 @@ try:
             key_prefix="current",
         )
 
-    # ── Else if staging exists, show image picker ──
+    # ── Image picker for new recipes ───────────────
     elif "temp" in st.session_state:
         temp = st.session_state.temp
         st.header("🖼️ Pick a Hero Image")
         opts = temp["image_options"]
 
         if not opts:
-            # No images: finalize immediately
+            # finalize immediately if no images
             image_url = ""
             recipe = temp["recipe"]
             recipe_ings = temp["recipe_ings"]
@@ -179,8 +302,7 @@ try:
                 format_func=lambda i: f"Option {i+1}",
             )
 
-            # SINGLE CLICK confirm button
-            if st.button("Confirm Image"):
+            if st.button("Confirm Image (click twice)"):
                 image_url = opts[choice]
                 recipe = temp["recipe"]
                 recipe_ings = temp["recipe_ings"]
@@ -197,10 +319,9 @@ try:
                 st.session_state.pop("temp")
                 st.stop()
 
-    # ── Else show history or welcome message ───────
+    # ── History or welcome ──────────────────────────
     else:
         if not st.session_state.history:
-            # Beautiful welcome panel when no recipes saved
             st.markdown(
                 """
                 <div style="text-align:center; margin-top:4rem; color:#2c3e50;">
@@ -213,7 +334,7 @@ try:
                        alt="Cooking GIF"
                        style="max-width:300px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);" />
                 </div>
-            """,
+                """,
                 unsafe_allow_html=True,
             )
         else:

@@ -42,7 +42,8 @@ print(df.describe())
 
 # ─── Boxplot of calories, protein, fat ──────────
 metrics = [
-    c for c in df.columns
+    c
+    for c in df.columns
     if c.lower() in ("calories", "protein", "fat", "carbs", "fiber")
 ]
 if not metrics:

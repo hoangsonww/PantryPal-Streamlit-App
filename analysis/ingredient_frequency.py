@@ -9,7 +9,7 @@ import pandas as pd
 
 # ─── Figure out where this script lives ─────────────────────
 script_path = Path(__file__).resolve()
-script_dir = script_path.parent    # e.g. …/PantryPal/analysis
+script_dir = script_path.parent  # e.g. …/PantryPal/analysis
 
 # ─── Load recipe_history.json, which is one level up ────────
 history_path = script_dir.parent / "recipe_history.json"
@@ -46,7 +46,8 @@ print(df.describe())
 
 # ─── Pick columns to plot ───────────────────────────────────
 metrics = [
-    c for c in df.columns
+    c
+    for c in df.columns
     if c.lower() in ("calories", "protein", "fat", "carbs", "fiber")
 ]
 if not metrics:

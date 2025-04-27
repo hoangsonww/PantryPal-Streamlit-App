@@ -1,5 +1,7 @@
 import json
+import random
 import re
+from datetime import datetime
 
 from google import genai
 from google.genai import types
@@ -27,6 +29,7 @@ class GenAIRecipeGenerator:
         :param serves: The number of servings.
         :return: The generated recipe as a JSON object.
         """
+        # Base system prompt
         sys = (
             "You are a world-class chef AI.  "
             "Given ingredients, dietary restrictions, and number of servings,  "
@@ -36,24 +39,70 @@ class GenAIRecipeGenerator:
             "  • instructions: array of strings\n"
             "  • nutrition: object mapping nutrient names to strings\n"
             "  • shopping_list: array of strings\n"
-            "If the user gives no ingredients, respond with a random recipe.  "
-            "Use your culinary expertise and creativity to generate a great recipe.  "
-            "For a random recipe, PLEASE be very creative and generate a unique dish each time.  "
         )
+
+        # Detect “Surprise me!” calls (no ingredients)
+        is_random = len(ings) == 0
+        if is_random:
+            # 1) Increase randomness
+            temp = 1.0
+            top_p = 1.0
+            top_k = 0
+
+            # 2) Pick a random cuisine & theme
+            cuisines = [
+                "Moroccan",
+                "Korean",
+                "Peruvian",
+                "Nordic",
+                "Caribbean",
+                "Ethiopian",
+                "Thai",
+                "Middle Eastern",
+                "Brazilian",
+                "Japanese",
+            ]
+            themes = [
+                "one-pot wonder",
+                "street-food twist",
+                "fusion of two cuisines",
+                "deconstructed comfort food",
+                "farm-to-table special",
+                "seasonal harvest stew",
+                "spiced-up breakfast",
+                "vegan gourmet delight",
+            ]
+            cuisine = random.choice(cuisines)
+            theme = random.choice(themes)
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+            sys += (
+                "For a random recipe, PLEASE be wildly creative and generate a unique dish each time.  "
+                f"Your theme is **{theme}** from **{cuisine} cuisine**, "
+                "and you must give it a never-seen-before name.  "
+                f"Use the current timestamp ({timestamp}) as inspiration.\n"
+            )
+        else:
+            # Defaults for user-specified recipes
+            temp = 0.8
+            top_p = 0.95
+            top_k = 64
+
         prompt = (
-            f"Ingredients: {', '.join(ings)}\n"
+            f"Ingredients: {', '.join(ings) if ings else 'None'}\n"
             f"Restrictions: {', '.join(restrs) or 'None'}\n"
             f"Servings: {serves}\n\n"
             "Output _ONLY_ the JSON object."
         )
+
         resp = self.client.models.generate_content(
             model="gemini-1.5-flash",
             contents=prompt,
             config=types.GenerateContentConfig(
                 system_instruction=sys,
-                temperature=0.8,
-                top_p=0.95,
-                top_k=64,
+                temperature=temp,
+                top_p=top_p,
+                top_k=top_k,
                 max_output_tokens=8192,
                 response_mime_type="application/json",
             ),
