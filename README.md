@@ -32,6 +32,20 @@ Try it now in your browser: **[https://pantrypal-app.streamlit.app](https://pant
 
 ### Home Page
 
+<p align="center">
+   <img src="docs/img/home.png" alt="Home Page" width="100%">
+</p>
+
+### Recipe Page
+
+<p align="center">
+   <img src="docs/img/recipe-1.png" alt="Recipe Page" width="100%">
+</p>
+
+<p align="center">
+   <img src="docs/img/recipe-2.png" alt="Recipe Page" width="100%">
+</p>
+
 ## 🛠️ Prerequisites
 
 - Python 3.9 or later  
