@@ -130,7 +130,6 @@ pantrypal/
 │   ├── image_fetcher.py # Unsplash image fetcher
 │   └── storage.py       # JSON‐file storage for history
 ├── requirements.txt     # Python dependencies
-├── recipe_history.json  # Persistent recipe history
 └── README.md            # This file
 ```
 
