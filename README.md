@@ -34,7 +34,7 @@ Built from the frustration of “what’s for dinner?”, PantryPal combines the
 - [🧑‍🍳 How to Use](#-how-to-use)
 - [⚙️ Customization](#-customization)
 - [🐳 Docker Support](#-docker-support)
-- [Analysis Scripts](#analysis-scripts)
+- [Analysis Scripts](#-analysis-scripts)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 - [📧 Contact](#-contact)
@@ -219,7 +219,7 @@ docker-compose up --build
 
 This will create a Docker image and start the app in a container. Access it at `http://localhost:8501`.
 
-## Analysis Scripts
+## 📊 Analysis Scripts
 
 Once you have generated some recipes, you can analyze the data using the scripts in the `analysis/` directory. These scripts provide insights into ingredient frequency, nutrition summaries, and trends over time.
 

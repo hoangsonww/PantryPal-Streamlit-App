@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d9c65b9-1d2d-4644-8c29-92f7e288da7d" name="Changes" comment="Final: App working">
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/localstorage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="2d9c65b9-1d2d-4644-8c29-92f7e288da7d" name="Changes" comment="Final: App working" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -302,7 +296,71 @@
       <option name="project" value="LOCAL" />
       <updated>1745775179125</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1745791537374</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1745791537374</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1745791626620</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1745791626620</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1745791683398</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1745791683398</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1745791704674</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1745791704674</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1745791735782</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1745791735782</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1745791766250</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1745791766250</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1745791792175</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1745791792175</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1745791810217</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1745791810217</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
