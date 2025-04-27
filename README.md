@@ -22,7 +22,6 @@ Built from the frustration of “what’s for dinner?”, PantryPal combines the
 
 ## Table of Contents
 
-- [PantryPal – AI Recipe Generator 🥕](#pantrypal--ai-recipe-generator-)
 - [🌐 Live App](#-live-app)
 - [📝 Features](#-features)
 - [🛠️ Prerequisites](#-prerequisites)
@@ -34,7 +33,7 @@ Built from the frustration of “what’s for dinner?”, PantryPal combines the
 - [🧑‍🍳 How to Use](#-how-to-use)
 - [⚙️ Customization](#-customization)
 - [🐳 Docker Support](#-docker-support)
-- [Analysis Scripts](#-analysis-scripts)
+- [📊 Analysis Scripts](#-analysis-scripts)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 - [📧 Contact](#-contact)

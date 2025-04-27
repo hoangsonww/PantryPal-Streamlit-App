@@ -11,12 +11,12 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
+from streamlit_local_storage import LocalStorage
 
 from components.display import display_recipe
 from components.inputs import get_user_input
 from utils.genai_client import GenAIRecipeGenerator
 from utils.image_fetcher import UnsplashImageFetcher
-from streamlit_local_storage import LocalStorage
 
 # ─── Inlined Storage class using browser localStorage ───────────────────
 _local = LocalStorage()
@@ -135,11 +135,13 @@ def render_analysis():
         for key, val in nutri.items():
             m = re.match(r"^\s*([\d\.]+)", val or "")
             if m:
-                nutri_rows.append({
-                    "name": entry["recipe"].get("name", "Unknown"),
-                    "metric": key,
-                    "value": float(m.group(1)),
-                })
+                nutri_rows.append(
+                    {
+                        "name": entry["recipe"].get("name", "Unknown"),
+                        "metric": key,
+                        "value": float(m.group(1)),
+                    }
+                )
 
     if nutri_rows:
         df_nutri = pd.DataFrame(nutri_rows)
@@ -231,7 +233,8 @@ st.set_page_config(
 )
 
 # ─── Global CSS & FontAwesome ────────────────────
-st.markdown("""
+st.markdown(
+    """
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -243,7 +246,9 @@ st.markdown("""
   .stSidebar { padding:1rem; }
   .stButton>button:hover { opacity:0.9; }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # ─── Load env & init clients ─────────────────────
 load_dotenv()
@@ -293,8 +298,9 @@ try:
                 recipe = ai_gen.generate([], restrictions, servings)
                 recipe_ings = normalize_ingredients(recipe["ingredients"])
                 recipe["ingredients"] = recipe_ings
-                images = (img_fetch.fetch_images(recipe["name"], n=5)
-                          if img_fetch else [])
+                images = (
+                    img_fetch.fetch_images(recipe["name"], n=5) if img_fetch else []
+                )
                 st.session_state.temp = {
                     "recipe": recipe,
                     "recipe_ings": recipe_ings,
@@ -314,8 +320,9 @@ try:
                 recipe = ai_gen.generate(ingredients, restrictions, servings)
                 recipe_ings = normalize_ingredients(recipe["ingredients"])
                 recipe["ingredients"] = recipe_ings
-                images = (img_fetch.fetch_images(recipe["name"], n=5)
-                          if img_fetch else [])
+                images = (
+                    img_fetch.fetch_images(recipe["name"], n=5) if img_fetch else []
+                )
                 st.session_state.temp = {
                     "recipe": recipe,
                     "recipe_ings": recipe_ings,
@@ -350,11 +357,11 @@ try:
             recipe_ings = temp["recipe_ings"]
             user_ings = temp["user_ings"]
             missing = [
-                ing for ing in recipe_ings
+                ing
+                for ing in recipe_ings
                 if ing.lower() not in {u.lower() for u in user_ings}
             ]
-            subs = (ai_gen.get_substitutions(missing)
-                    if (ai_gen and missing) else {})
+            subs = ai_gen.get_substitutions(missing) if (ai_gen and missing) else {}
             storage.save_recipe(recipe, image_url, user_ings, subs)
             st.session_state.history = storage.load_history()
             st.session_state.current = st.session_state.history[-1]
@@ -379,11 +386,11 @@ try:
                 recipe_ings = temp["recipe_ings"]
                 user_ings = temp["user_ings"]
                 missing = [
-                    ing for ing in recipe_ings
+                    ing
+                    for ing in recipe_ings
                     if ing.lower() not in {u.lower() for u in user_ings}
                 ]
-                subs = (ai_gen.get_substitutions(missing)
-                        if (ai_gen and missing) else {})
+                subs = ai_gen.get_substitutions(missing) if (ai_gen and missing) else {}
                 storage.save_recipe(recipe, image_url, user_ings, subs)
                 st.session_state.history = storage.load_history()
                 st.session_state.current = st.session_state.history[-1]
@@ -405,8 +412,9 @@ try:
                        alt="Cooking GIF"
                        style="max-width:300px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);" />
                 </div>
-                """
-                , unsafe_allow_html=True)
+                """,
+                unsafe_allow_html=True,
+            )
         else:
             st.header("🗂️ Recipe History")
             for entry in reversed(st.session_state.history):
