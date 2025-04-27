@@ -20,6 +20,19 @@ Built from the frustration of “what’s for dinner?”, PantryPal combines the
   <img src="https://img.shields.io/badge/License-MIT-4E9F3D?style=for-the-badge&logo=github" alt="MIT License">
 </p>
 
+## Table of Contents
+
+- [PantryPal – AI Recipe Generator 🥕](#pantrypal--ai-recipe-generator-)
+- [🌐 Live App](#-live-app)
+- [📝 Features](#-features)
+- [🛠️ Prerequisites](#-prerequisites)
+- [🚀 Installation](#-installation)
+- [🔑 Configuration](#-configuration)
+- [📂 Directory Structure](#-directory-structure)
+- [▶️ Running the App](#-running-the-app)
+- [🧰 Linting & Formatting](#-linting--formatting)
+- [🧑‍🍳 How to Use](#-how-to-use)
+
 ## 🌐 Live App
 
 Try it now in your browser: **[https://pantrypal-app.streamlit.app](https://pantrypal-app.streamlit.app)**. Feel free to explore and generate recipes with your pantry items!
