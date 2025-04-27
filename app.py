@@ -43,6 +43,10 @@ def render_analysis():
       1) Nutrition boxplots
       2) Recipes generated over time (line)
       3) Top ingredients by frequency (bar)
+
+    This function is called when the user clicks the "View Analytics" button in the sidebar.
+
+    :return: None
     """
     history_path = Path("recipe_history.json")
     if not history_path.exists():
