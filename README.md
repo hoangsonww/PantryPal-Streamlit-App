@@ -28,7 +28,7 @@ PantryPal is a Streamlit web app that turns the ingredients you have on hand (pl
 
 ## 🌐 Live App
 
-Try it now in your browser: [PantryPal Live App](https://pantrypal-app.streamlit.app)  
+Try it now in your browser: **[https://pantrypal-app.streamlit.app](https://pantrypal-app.streamlit.app)**. Feel free to explore and generate recipes with your pantry items!
 
 ## 🛠️ Prerequisites
 
@@ -57,8 +57,6 @@ Try it now in your browser: [PantryPal Live App](https://pantrypal-app.streamlit
    pip install -r requirements.txt
    ```
 
----
-
 ## 🔑 Configuration
 
 Create a file named `.env` in the project root with the following variables:
@@ -72,7 +70,6 @@ UNSPLASH_ACCESS_KEY=<YOUR_UNSPLASH_ACCESS_KEY>
 - **GOOGLE_AI_API_KEY**: Your Google Cloud API key for the Generative AI (Gemini) API.  
 - **UNSPLASH_ACCESS_KEY**: Your Unsplash Access Key (register at https://unsplash.com/developers).
 
----
 
 ## 📂 Directory Structure
 
@@ -91,8 +88,6 @@ pantrypal/
 └── README.md            # This file
 ```
 
----
-
 ## ▶️ Running the App
 
 With your virtual environment active and `.env` configured, simply run:
@@ -102,8 +97,6 @@ streamlit run app.py
 ```
 
 Then open the URL shown in your terminal (e.g. `http://localhost:8501`) in your browser.
-
----
 
 ## 🧑‍🍳 How to Use
 
@@ -128,15 +121,13 @@ Then open the URL shown in your terminal (e.g. `http://localhost:8501`) in your 
 10. **Clear History**  
     - Wipe all saved recipes with one click.  
 
----
-
 ## ⚙️ Customization
 
 - **Max output tokens** & **temperature** for AI calls can be adjusted in `utils/genai_client.py`.  
 - **Caching** for images is handled in `utils/image_fetcher.py` (TTL = 1 hour).  
 - **History storage** uses a simple JSON file (`recipe_history.json`) in the project root.  
 
----
+> For now, the app uses a JSON file for history storage. Future versions may include a database option (e.g., SQLite, PostgreSQL) for better scalability and performance.
 
 ## 🤝 Contributing
 
@@ -146,19 +137,13 @@ Then open the URL shown in your terminal (e.g. `http://localhost:8501`) in your 
 4. Push to the branch (`git push origin feature/foo`)  
 5. Open a Pull Request  
 
----
-
 ## 📄 License
 
 This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
 
----
-
 ## 📧 Contact
 
 - [Son Nguyen](https://github.com/hoangsonww)
-
----
 
 ## 🙏 Acknowledgments
 
