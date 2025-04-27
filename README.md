@@ -186,7 +186,8 @@ isort .
 
 - **Max output tokens** & **temperature** for AI calls can be adjusted in `utils/genai_client.py`.  
 - **Caching** for images is handled in `utils/image_fetcher.py` (TTL = 1 hour).  
-- **History** uses Local Storage to persist data across sessions.
+- **Recipe History** uses Local Storage to persist recipe history across sessions.
+  - This allows you to revisit past recipes without needing to regenerate them.
 
 ## 🐳 Docker Support
 
