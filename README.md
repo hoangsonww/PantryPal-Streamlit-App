@@ -56,7 +56,7 @@ Try it now in your browser: **[https://pantrypal-app.streamlit.app](https://pant
 - **Linting & formatting**: Code is formatted with Black and imports are sorted with isort.
 - **Environment variable management**: Use `.env` or `.streamlit/secrets.toml` for sensitive information.
 - **Interactive charts**: Nutrition information is displayed using Altair for better visualization.
-- **Persistent storage**: Recipe history is saved for easy access.
+- **Persistent storage**: Recipe history is saved and persists across sessions for easy access.
 - **User-friendly UI**: Built with Streamlit for a clean and intuitive interface.
 
 ## 🛠️ Prerequisites
