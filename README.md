@@ -30,7 +30,7 @@ PantryPal is a Streamlit web app that turns the ingredients you have on hand (pl
 1. **Clone the repository**  
    ```bash
    git clone https://github.com/hoangsonww/PantryPal-Streamlit-App.git
-   cd pantrypal
+   cd PantryPal-Streamlit-App
    ```
 
 2. **Create & activate a virtual environment**  
