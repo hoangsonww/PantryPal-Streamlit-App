@@ -1,0 +1,64 @@
+[
+  {
+    "id": "47d775e4a82e453a9de54b554f1628a8",
+    "timestamp": "2025-04-27T01:59:08.215628",
+    "recipe": {
+      "name": "Garlic Fried Rice",
+      "ingredients": [
+        "Rice",
+        "Garlic",
+        "Soy Sauce",
+        "Vegetable Oil",
+        "Green Onions"
+      ],
+      "instructions": [
+        "Rinse the rice and cook according to package directions.",
+        "Mince the garlic and finely chop the green onions.",
+        "Heat the vegetable oil in a wok or large skillet over medium-high heat.",
+        "Add the minced garlic and cook until fragrant (about 30 seconds).",
+        "Add the cooked rice to the wok and stir-fry for 2-3 minutes.",
+        "Pour in the soy sauce and stir to combine.",
+        "Garnish with chopped green onions before serving."
+      ],
+      "nutrition": {
+        "calories": "200 per serving",
+        "protein": "5g per serving",
+        "carbohydrates": "30g per serving",
+        "fat": "5g per serving"
+      },
+      "shopping_list": [
+        "Rice",
+        "Garlic",
+        "Soy Sauce",
+        "Vegetable Oil",
+        "Green Onions"
+      ]
+    },
+    "recipe_ings": [
+      "Rice",
+      "Garlic",
+      "Soy Sauce",
+      "Vegetable Oil",
+      "Green Onions"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDM1MjN8MHwxfHNlYXJjaHwxfHxHYXJsaWMlMjBGcmllZCUyMFJpY2UlMjByZWNpcGUlMjBmb29kfGVufDB8fHx8MTc0NTczMzU0NXww&ixlib=rb-4.0.3&q=80&w=1080",
+    "user_ings": [
+      "rice",
+      "garlic"
+    ],
+    "substitutions": {
+      "Soy Sauce": [
+        "Coconut aminos",
+        "Tamari"
+      ],
+      "Vegetable Oil": [
+        "Avocado oil",
+        "Olive oil"
+      ],
+      "Green Onions": [
+        "Scallions",
+        "Chives"
+      ]
+    }
+  }
+]
