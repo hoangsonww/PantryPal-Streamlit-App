@@ -76,6 +76,7 @@ pantrypal/
 │   ├── image_fetcher.py # Unsplash image fetcher
 │   └── storage.py       # JSON‐file storage for history
 ├── requirements.txt     # Python dependencies
+├── recipe_history.json  # Persistent recipe history
 └── README.md            # This file
 ```
 
@@ -139,3 +140,10 @@ Then open the URL shown in your terminal (e.g. `http://localhost:8501`) in your 
 ## 📄 License
 
 This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
+
+---
+
+## 📧 Contact
+
+- [Son Nguyen](https://github.com/hoangsonww)
+
