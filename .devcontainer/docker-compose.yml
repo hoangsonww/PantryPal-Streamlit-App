@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  pantrypal:
+    build: .
+    container_name: pantrypal
+    # Map host port 8501 → container port 8501
+    ports:
+      - "8501:8501"
+    # Load environment variables from .env
+    env_file:
+      - .env
+    # Mount your local source & history file into the container
+    volumes:
+      - ./:/app
+      - ./recipe_history.json:/app/recipe_history.json
+    # Restart automatically unless stopped
+    restart: unless-stopped
+
+# No named volumes needed—history is persisted to your host-mounted file

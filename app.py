@@ -150,8 +150,22 @@ try:
         opts = temp["image_options"]
 
         if not opts:
-            st.info("⚠️ No images found—continuing without one.")
-            choice, confirmed = None, True
+            # No images: finalize immediately
+            image_url = ""
+            recipe = temp["recipe"]
+            recipe_ings = temp["recipe_ings"]
+            user_ings = temp["user_ings"]
+            missing = [
+                ing
+                for ing in recipe_ings
+                if ing.lower() not in {u.lower() for u in user_ings}
+            ]
+            subs = ai_gen.get_substitutions(missing) if (ai_gen and missing) else {}
+            storage.save_recipe(recipe, image_url, user_ings, subs)
+            st.session_state.history = storage.load_history()
+            st.session_state.current = st.session_state.history[-1]
+            st.session_state.pop("temp")
+            st.stop()
         else:
             cols = st.columns(min(len(opts), 3))
             for idx, url in enumerate(opts):
@@ -160,30 +174,28 @@ try:
                     st.caption(f"Option {idx + 1}")
 
             choice = st.radio(
-                "Select an image:",
+                "Select an image (and click Confirm Image twice to confirm):",
                 options=list(range(len(opts))),
-                format_func=lambda i: f"Option {i + 1}",
-                index=0,
+                format_func=lambda i: f"Option {i+1}",
             )
-            confirmed = st.button("Confirm Image")
 
-        if not confirmed:
-            st.stop()
-
-        image_url = opts[choice] if (opts and choice is not None) else ""
-        recipe = temp["recipe"]
-        recipe_ings = temp["recipe_ings"]
-        user_ings = temp["user_ings"]
-        missing = [
-            ing
-            for ing in recipe_ings
-            if ing.lower() not in {u.lower() for u in user_ings}
-        ]
-        subs = ai_gen.get_substitutions(missing) if (ai_gen and missing) else {}
-        storage.save_recipe(recipe, image_url, user_ings, subs)
-        st.session_state.history = storage.load_history()
-        st.session_state.current = st.session_state.history[-1]
-        st.session_state.pop("temp")
+            # SINGLE CLICK confirm button
+            if st.button("Confirm Image"):
+                image_url = opts[choice]
+                recipe = temp["recipe"]
+                recipe_ings = temp["recipe_ings"]
+                user_ings = temp["user_ings"]
+                missing = [
+                    ing
+                    for ing in recipe_ings
+                    if ing.lower() not in {u.lower() for u in user_ings}
+                ]
+                subs = ai_gen.get_substitutions(missing) if (ai_gen and missing) else {}
+                storage.save_recipe(recipe, image_url, user_ings, subs)
+                st.session_state.history = storage.load_history()
+                st.session_state.current = st.session_state.history[-1]
+                st.session_state.pop("temp")
+                st.stop()
 
     # ── Else show history or welcome message ───────
     else:

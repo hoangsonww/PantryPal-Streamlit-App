@@ -1,4 +1,5 @@
 import json
+import re
 
 from google import genai
 from google.genai import types
@@ -35,6 +36,9 @@ class GenAIRecipeGenerator:
             "  • instructions: array of strings\n"
             "  • nutrition: object mapping nutrient names to strings\n"
             "  • shopping_list: array of strings\n"
+            "If the user gives no ingredients, respond with a random recipe.  "
+            "Use your culinary expertise and creativity to generate a great recipe.  "
+            "For a random recipe, PLEASE be very creative and generate a unique dish each time.  "
         )
         prompt = (
             f"Ingredients: {', '.join(ings)}\n"
@@ -64,7 +68,6 @@ class GenAIRecipeGenerator:
         :param missing: The list of missing ingredients.
         :return: The mapping of missing ingredients to their substitutes as a JSON object.
         """
-        # Ask for a direct mapping from ingredient→[subs…]
         sys = (
             "You are a culinary expert.  "
             "Given a list of missing ingredients, output _ONLY_ a JSON object "
@@ -87,4 +90,17 @@ class GenAIRecipeGenerator:
                 response_mime_type="application/json",
             ),
         )
-        return json.loads(resp.text)
+
+        text = resp.text
+        try:
+            return json.loads(text)
+        except json.JSONDecodeError:
+            # attempt to extract the first {...} block
+            m = re.search(r"(\{.*\})", text, re.DOTALL)
+            if m:
+                try:
+                    return json.loads(m.group(1))
+                except json.JSONDecodeError:
+                    pass
+            # fallback to empty map
+            return {}

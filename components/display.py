@@ -110,20 +110,17 @@ def display_recipe(
     # — Substitutions
     if substitutions:
         st.subheader("🔄 Substitutions")
-        # Case 1: list of dicts
         if isinstance(substitutions, list):
             for entry in substitutions:
-                ing = entry.get("ingredient") or entry.get("item") or "Unknown"
+                ing_name = entry.get("ingredient") or entry.get("item") or "Unknown"
                 subs_list = entry.get("substitutes") or entry.get("subs") or []
                 subs_str = [s if isinstance(s, str) else str(s) for s in subs_list]
-                st.write(f"• **{ing}**: {', '.join(subs_str)}")
-        # Case 2: dict mapping
+                st.write(f"• **{ing_name}**: {', '.join(subs_str)}")
         elif isinstance(substitutions, dict):
             for orig, subs_list in substitutions.items():
                 subs_str = [s if isinstance(s, str) else str(s) for s in subs_list]
                 st.write(f"• **{orig}**: {', '.join(subs_str)}")
         else:
-            # Unexpected shape, fallback
             st.write(str(substitutions))
 
     # — Downloads (JSON, Markdown, TXT)
@@ -163,7 +160,7 @@ def display_recipe(
         f"- {n}: {v}" for n, v in recipe.get("nutrition", {}).items()
     ]
     if missing:
-        txt += ["", "Shopping List:"] + [f"- {l}" for l in missing]
+        txt += ["", "## Shopping List"] + [f"- {l}" for l in missing]
     st.download_button(
         "Download Plain TXT",
         data="\n".join(txt),
@@ -171,3 +168,17 @@ def display_recipe(
         mime="text/plain",
         key=f"{key_prefix}_dl_txt",
     )
+
+    # — Return Home button (only when viewing current recipe)
+    if key_prefix == "current":
+        st.markdown("---")
+
+        def _return_home():
+            st.session_state.pop("current", None)
+            st.session_state.pop("temp", None)
+
+        st.button(
+            "🏠 Return Home",
+            key=f"{key_prefix}_return_home",
+            on_click=_return_home,
+        )

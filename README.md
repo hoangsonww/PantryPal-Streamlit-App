@@ -1,28 +1,22 @@
 # PantryPal – AI Recipe Generator 🥕
 
-PantryPal is a Streamlit web app that turns the ingredients you have on hand (plus any dietary restrictions) into chef-worthy recipes in seconds. Powered by Google’s Gemini AI and Unsplash for hero images, PantryPal features:
+**Meet PantryPal: Your Personal AI-Powered Sous-Chef** 🎉🍽️
 
-- **Pantry-based recipe generation**  
-- **“Surprise Me!”** to let the AI invent a random dish  
-- **Dietary restrictions** support (Vegan, Gluten-Free, Halal, etc.)  
-- **Servings slider** (1–12 portions)  
-- **Hero image selection** for each recipe  
-- **Interactive ingredients checklist** & **shopping list** download (TXT)  
-- **Nutrition bar & donut charts** per serving  
-- **Estimated difficulty** indicator  
-- **Persistent recipe history** with delete capability  
-- **Download recipe** as JSON, Markdown, or plain TXT  
+Say goodbye to pantry panic! PantryPal instantly transforms whatever you’ve got on hand—plus any dietary preferences—into mouth-watering, chef-level recipes in just seconds. No more copy-pasting lists into ChatGPT or scrolling through endless recipe sites.  
+
+Built from the frustration of “what’s for dinner?”, PantryPal combines the power of Google Gemini AI with a sleek, intuitive Streamlit interface. Simply list your ingredients, set your dietary restrictions and servings, and watch as AI crafts a custom recipe complete with step-by-step instructions, nutrition breakdown, shopping list, and stunning hero images. Cooking has never been this effortless—or this inspiring!
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-%3E%3D3.9-3776AB?style=for-the-badge&logo=python" alt="Python">
   <img src="https://img.shields.io/badge/Streamlit-v1.44.1-FE4A49?style=for-the-badge&logo=streamlit" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Snowflake-Cloud-00B2E2?style=for-the-badge&logo=snowflake" alt="Snowflake">
   <img src="https://img.shields.io/badge/Google%20GenAI-Gemini-blue?style=for-the-badge&logo=google" alt="Google Gemini AI">
   <img src="https://img.shields.io/badge/Unsplash-API-0052CC?style=for-the-badge&logo=unsplash" alt="Unsplash API">
   <img src="https://img.shields.io/badge/python--dotenv-latest-212121?style=for-the-badge&logo=dotenv" alt="python-dotenv">
   <img src="https://img.shields.io/badge/pandas-latest-150458?style=for-the-badge&logo=pandas" alt="pandas">
   <img src="https://img.shields.io/badge/Altair-latest-F47721?style=for-the-badge&logo=altair" alt="Altair">
+  <img src="https://img.shields.io/badge/Docker-Container-2496ED?style=for-the-badge&logo=docker" alt="Docker">
   <img src="https://img.shields.io/badge/Black-23.7.0-000000?style=for-the-badge" alt="Black">
-  <img src="https://img.shields.io/badge/isort-5.12.0-007ACC?style=for-the-badge" alt="isort">
   <img src="https://img.shields.io/badge/License-MIT-4E9F3D?style=for-the-badge&logo=github" alt="MIT License">
 </p>
 
@@ -45,6 +39,25 @@ Try it now in your browser: **[https://pantrypal-app.streamlit.app](https://pant
 <p align="center">
    <img src="docs/img/recipe-2.png" alt="Recipe Page" width="100%">
 </p>
+
+## 📝 Features
+
+- **Pantry-based recipe generation**: Enter your pantry items and get a recipe tailored to what you have.
+- **Surprise Me!**: Let the AI create a random recipe from scratch.
+- **Dietary restrictions**: Choose from options like Vegetarian, Vegan, Gluten-Free, and more.
+- **Servings slider**: Adjust the number of servings from 1 to 12.
+- **Hero image selection**: Pick a beautiful image for your recipe from Unsplash.
+- **Interactive ingredients checklist**: Check off ingredients as you gather them.
+- **Shopping list download**: Download a TXT file of your shopping list.
+- **Nutrition bar & donut charts**: Visualize the nutritional breakdown per serving.
+- **Estimated difficulty**: Get an idea of how challenging the recipe is.
+- **Download recipe**: Save your recipe as JSON, Markdown, or plain TXT.
+- **Docker support**: Run the app in a containerized environment for easy deployment.
+- **Linting & formatting**: Code is formatted with Black and imports are sorted with isort.
+- **Environment variable management**: Use `.env` or `.streamlit/secrets.toml` for sensitive information.
+- **Interactive charts**: Nutrition information is displayed using Altair for better visualization.
+- **Persistent storage**: Recipe history is saved for easy access.
+- **User-friendly UI**: Built with Streamlit for a clean and intuitive interface.
 
 ## 🛠️ Prerequisites
 
@@ -99,6 +112,16 @@ UNSPLASH_ACCESS_KEY = "<YOUR_UNSPLASH_ACCESS_KEY>"
 ```
 pantrypal/
 ├── app.py
+├── .env                 # Environment variables
+├── .streamlit/
+│   ├── config.toml      # Streamlit configuration
+│   └── secrets.toml     # Alternative for .env
+├── Dockerfile           # Dockerfile for containerization
+├── docker-compose.yml   # Docker Compose file
+├── analysis/
+│   ├── ingredient_frequency.py
+│   ├── nutrition_summary.py
+│   └── trends_over_time.py
 ├── components/
 │   ├── inputs.py        # Sidebar input UI
 │   └── display.py       # Recipe & history rendering
@@ -120,6 +143,20 @@ streamlit run app.py
 ```
 
 Then open the URL shown in your terminal (e.g. `http://localhost:8501`) in your browser.
+
+## 🧰 Linting & Formatting
+
+We use **Black** for code formatting and **isort** for import sorting. To check and format your code, run:
+
+```bash
+# Check code style
+black --check .
+isort --check .
+
+# Format code
+black .
+isort .
+```
 
 ## 🧑‍🍳 How to Use
 
@@ -143,6 +180,8 @@ Then open the URL shown in your terminal (e.g. `http://localhost:8501`) in your 
    - Click to have Gemini invent a random recipe from scratch (no pantry required).  
 10. **Clear History**  
     - Wipe all saved recipes with one click.  
+11. **Enjoy Cooking!**  
+    - Get cooking with your generated recipe! 🧑‍🍳
 
 ## ⚙️ Customization
 
@@ -151,6 +190,28 @@ Then open the URL shown in your terminal (e.g. `http://localhost:8501`) in your 
 - **History storage** uses a simple JSON file (`recipe_history.json`) in the project root.  
 
 > For now, the app uses a JSON file for history storage. Future versions may include a database option (e.g., SQLite, PostgreSQL) for better scalability and performance.
+
+## 🐳 Docker Support
+
+To run the app in a Docker container, use the provided `Dockerfile` and `docker-compose.yml`. Build and run the container with:
+
+```bash
+docker-compose up --build
+```
+
+This will create a Docker image and start the app in a container. Access it at `http://localhost:8501`.
+
+## Analysis Scripts
+
+Once you have generated some recipes, you can analyze the data using the scripts in the `analysis/` directory. These scripts provide insights into ingredient frequency, nutrition summaries, and trends over time.
+
+Run the following commands from the project root to execute the analysis scripts:
+
+```bash
+python analysis/ingredient_frequency.py
+python analysis/nutrition_summary.py
+python analysis/trends_over_time.py
+```
 
 ## 🤝 Contributing
 
@@ -166,7 +227,9 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 ## 📧 Contact
 
-- [Son Nguyen](https://github.com/hoangsonww)
+- [Son Nguyen](https://sonnguyenhoang.com)
+   - LinkedIn: [hoangsonw](https://www.linkedin.com/in/hoangsonw/)
+   - GitHub: [@hoangsonww](https://github.com/hoangsonww)
 
 ## 🙏 Acknowledgments
 
@@ -176,6 +239,7 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 - [Altair](https://altair-viz.github.io/) for interactive charts  
 - [Python-dotenv](https://pypi.org/project/python-dotenv/) for environment variable management  
 - [pandas](https://pandas.pydata.org/) for data manipulation  
+- [Snowflake](https://www.snowflake.com/) for cloud deployment
 
 ---
 
