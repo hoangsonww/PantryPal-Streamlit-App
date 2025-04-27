@@ -32,6 +32,13 @@ Built from the frustration of “what’s for dinner?”, PantryPal combines the
 - [▶️ Running the App](#-running-the-app)
 - [🧰 Linting & Formatting](#-linting--formatting)
 - [🧑‍🍳 How to Use](#-how-to-use)
+- [⚙️ Customization](#-customization)
+- [🐳 Docker Support](#-docker-support)
+- [Analysis Scripts](#analysis-scripts)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [📧 Contact](#-contact)
+- [🙏 Acknowledgments](#-acknowledgments)
 
 ## 🌐 Live App
 
