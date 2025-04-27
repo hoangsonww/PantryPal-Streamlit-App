@@ -3,6 +3,7 @@ import os
 import random
 import re
 import traceback
+import uuid
 from datetime import datetime
 from pathlib import Path
 
@@ -15,7 +16,81 @@ from components.display import display_recipe
 from components.inputs import get_user_input
 from utils.genai_client import GenAIRecipeGenerator
 from utils.image_fetcher import UnsplashImageFetcher
-from utils.storage import Storage
+from streamlit_local_storage import LocalStorage
+
+# ─── Inlined Storage class using browser localStorage ───────────────────
+_local = LocalStorage()
+
+
+class Storage:
+    """
+    Class to manage the local storage of recipe history.
+    """
+
+    def __init__(self):
+        """
+        Initialize the storage manager using browser localStorage.
+        """
+        # Nothing to initialize beyond the LocalStorage instance
+        pass
+
+    def load_history(self) -> list:
+        """
+        Load the recipe history from localStorage.
+
+        :return: A list of recipe entries.
+        """
+        raw = _local.getItem("pantrypal_history") or "[]"
+        try:
+            return json.loads(raw)
+        except json.JSONDecodeError:
+            return []
+
+    def save_recipe(self, recipe, image_url, user_ings, substitutions):
+        """
+        Save a recipe entry to the history.
+        This includes the recipe details, image URL, user ingredients, and substitutions.
+        The entry is appended to the existing history.
+        Each entry is assigned a unique ID and timestamp.
+        The history is saved back to localStorage.
+
+        :param recipe: The recipe dictionary containing details like name, ingredients, instructions, and nutrition.
+        :param image_url: The URL of the hero image for the recipe.
+        :param user_ings: The list of ingredients provided by the user.
+        :param substitutions: The substitutions for ingredients, either as a list of dicts or a dict mapping.
+        """
+        history = self.load_history()
+        entry = {
+            "id": uuid.uuid4().hex,
+            # Local time instead of UTC
+            "timestamp": datetime.now().isoformat(),
+            "recipe": recipe,
+            "recipe_ings": recipe.get("ingredients", []),
+            "image_url": image_url,
+            "user_ings": user_ings,
+            "substitutions": substitutions,
+        }
+        history.append(entry)
+        _local.setItem("pantrypal_history", json.dumps(history, indent=2))
+
+    def delete_recipe(self, entry_id: str):
+        """
+        Delete a recipe entry from the history.
+        This method removes the entry with the specified ID from the history.
+        The updated history is saved back to localStorage.
+        If the entry ID is not found, no action is taken.
+        """
+        history = self.load_history()
+        history = [e for e in history if e["id"] != entry_id]
+        _local.setItem("pantrypal_history", json.dumps(history, indent=2))
+
+    def clear_history(self):
+        """
+        Clear the entire recipe history.
+        This method removes all entries from the history.
+        The history is saved back to localStorage as an empty list.
+        """
+        _local.deleteAll()
 
 
 def normalize_ingredients(raw_ings):
@@ -48,13 +123,10 @@ def render_analysis():
 
     :return: None
     """
-    history_path = Path("recipe_history.json")
-    if not history_path.exists():
+    history = storage.load_history()
+    if not history:
         st.error("📈 No recipe history found to analyze.")
         return
-
-    with open(history_path) as f:
-        history = json.load(f)
 
     # ─── Nutrition DataFrame ───────────────────────────────────
     nutri_rows = []
@@ -63,13 +135,11 @@ def render_analysis():
         for key, val in nutri.items():
             m = re.match(r"^\s*([\d\.]+)", val or "")
             if m:
-                nutri_rows.append(
-                    {
-                        "name": entry["recipe"].get("name", "Unknown"),
-                        "metric": key,
-                        "value": float(m.group(1)),
-                    }
-                )
+                nutri_rows.append({
+                    "name": entry["recipe"].get("name", "Unknown"),
+                    "metric": key,
+                    "value": float(m.group(1)),
+                })
 
     if nutri_rows:
         df_nutri = pd.DataFrame(nutri_rows)
@@ -161,22 +231,19 @@ st.set_page_config(
 )
 
 # ─── Global CSS & FontAwesome ────────────────────
-st.markdown(
-    """
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      crossorigin="anonymous"
-    >
-    <style>
-      h1,h2,h3 { font-family:'Segoe UI',sans-serif; font-weight:600; }
-      .stApp { padding:1rem 2rem; }
-      .stSidebar { padding:1rem; }
-      .stButton>button:hover { opacity:0.9; }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+st.markdown("""
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  crossorigin="anonymous"
+/>
+<style>
+  h1,h2,h3 { font-family:'Segoe UI',sans-serif; font-weight:600; }
+  .stApp { padding:1rem 2rem; }
+  .stSidebar { padding:1rem; }
+  .stButton>button:hover { opacity:0.9; }
+</style>
+""", unsafe_allow_html=True)
 
 # ─── Load env & init clients ─────────────────────
 load_dotenv()
@@ -190,7 +257,9 @@ if not UNSPLASH_KEY:
 
 ai_gen = GenAIRecipeGenerator(GOOGLE_KEY) if GOOGLE_KEY else None
 img_fetch = UnsplashImageFetcher(UNSPLASH_KEY) if UNSPLASH_KEY else None
-storage = Storage(Path("recipe_history.json"))
+
+# ─── Instantiate Storage ─────────────────────────
+storage = Storage()
 
 # ─── Sidebar inputs ──────────────────────────────
 ingredients, restrictions, servings, do_generate, do_clear, do_random = get_user_input()
@@ -224,9 +293,8 @@ try:
                 recipe = ai_gen.generate([], restrictions, servings)
                 recipe_ings = normalize_ingredients(recipe["ingredients"])
                 recipe["ingredients"] = recipe_ings
-                images = (
-                    img_fetch.fetch_images(recipe["name"], n=5) if img_fetch else []
-                )
+                images = (img_fetch.fetch_images(recipe["name"], n=5)
+                          if img_fetch else [])
                 st.session_state.temp = {
                     "recipe": recipe,
                     "recipe_ings": recipe_ings,
@@ -246,9 +314,8 @@ try:
                 recipe = ai_gen.generate(ingredients, restrictions, servings)
                 recipe_ings = normalize_ingredients(recipe["ingredients"])
                 recipe["ingredients"] = recipe_ings
-                images = (
-                    img_fetch.fetch_images(recipe["name"], n=5) if img_fetch else []
-                )
+                images = (img_fetch.fetch_images(recipe["name"], n=5)
+                          if img_fetch else [])
                 st.session_state.temp = {
                     "recipe": recipe,
                     "recipe_ings": recipe_ings,
@@ -283,11 +350,11 @@ try:
             recipe_ings = temp["recipe_ings"]
             user_ings = temp["user_ings"]
             missing = [
-                ing
-                for ing in recipe_ings
+                ing for ing in recipe_ings
                 if ing.lower() not in {u.lower() for u in user_ings}
             ]
-            subs = ai_gen.get_substitutions(missing) if (ai_gen and missing) else {}
+            subs = (ai_gen.get_substitutions(missing)
+                    if (ai_gen and missing) else {})
             storage.save_recipe(recipe, image_url, user_ings, subs)
             st.session_state.history = storage.load_history()
             st.session_state.current = st.session_state.history[-1]
@@ -303,7 +370,7 @@ try:
             choice = st.radio(
                 "Select an image (and click Confirm Image twice to confirm):",
                 options=list(range(len(opts))),
-                format_func=lambda i: f"Option {i+1}",
+                format_func=lambda i: f"Option {i + 1}",
             )
 
             if st.button("Confirm Image (click twice)  ✅"):
@@ -312,11 +379,11 @@ try:
                 recipe_ings = temp["recipe_ings"]
                 user_ings = temp["user_ings"]
                 missing = [
-                    ing
-                    for ing in recipe_ings
+                    ing for ing in recipe_ings
                     if ing.lower() not in {u.lower() for u in user_ings}
                 ]
-                subs = ai_gen.get_substitutions(missing) if (ai_gen and missing) else {}
+                subs = (ai_gen.get_substitutions(missing)
+                        if (ai_gen and missing) else {})
                 storage.save_recipe(recipe, image_url, user_ings, subs)
                 st.session_state.history = storage.load_history()
                 st.session_state.current = st.session_state.history[-1]
@@ -331,16 +398,15 @@ try:
                 <div style="text-align:center; margin-top:4rem; color:#2c3e50;">
                   <h1 style="font-size:2.5rem; margin-bottom:0.5rem;">👋 Welcome to PantryPal!</h1>
                   <p style="font-size:1.2rem; max-width:600px; margin:0 auto 1.5rem;">
-                    Get started by adding ingredients in the sidebar<br/>
+                    Get started by adding ingredients in thesidebar<br/>
                     and clicking <strong>🍴 Generate Recipe</strong>.
                   </p>
                   <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2JzZ2RnZDFoM2dnYnJyNnRiaTJhY3lxZ3VhNzc4MWVqZGpsN215OCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/vdLUkluR3DYcsDcKP1/giphy.gif"
                        alt="Cooking GIF"
                        style="max-width:300px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);" />
                 </div>
-                """,
-                unsafe_allow_html=True,
-            )
+                """
+                , unsafe_allow_html=True)
         else:
             st.header("🗂️ Recipe History")
             for entry in reversed(st.session_state.history):

@@ -8,3 +8,4 @@ requests
 black
 isort
 matplotlib
+streamlit-local-storage
