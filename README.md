@@ -244,9 +244,9 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 ## 📧 Contact
 
-- [Son Nguyen](https://sonnguyenhoang.com)
-   - LinkedIn: [hoangsonw](https://www.linkedin.com/in/hoangsonw/)
-   - GitHub: [@hoangsonww](https://github.com/hoangsonww)
+[Son Nguyen](https://sonnguyenhoang.com)
+- LinkedIn: [hoangsonw](https://www.linkedin.com/in/hoangsonw/)
+- GitHub: [@hoangsonww](https://github.com/hoangsonww)
 
 ## 🙏 Acknowledgments
 
