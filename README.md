@@ -260,6 +260,7 @@ This project is licensed under the MIT License. See [LICENSE](./LICENSE) for det
 
 ---
 
-Thank you for checking out PantryPal! We hope it makes your cooking adventures easier and more fun. If you have any questions or suggestions, feel free to reach out!  
+Thank you for checking out PantryPal! 
+We hope it makes your cooking adventures easier and more fun. If you have any questions or suggestions, feel free to reach out!  
 
 [⬆️ Back to Top](#pantrypal--ai-recipe-generator-)
