@@ -61,6 +61,9 @@ Try it now in your browser: **[https://pantrypal-app.streamlit.app](https://pant
 
 ## 📝 Features
 
+Although **Streamlit** is not a full-fledged web framework, it provides a simple and effective way to create 
+interactive data-based web applications. Here are some of the key features of PantryPal:
+
 - **Pantry-based recipe generation**: Enter your pantry items and get a recipe tailored to what you have.
 - **Surprise Me!**: Let the AI create a random recipe from scratch.
 - **Dietary restrictions**: Choose from options like Vegetarian, Vegan, Gluten-Free, and more.

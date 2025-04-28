@@ -1,0 +1,15 @@
+# snowflake.yml
+definition_version: 2
+
+entities:
+  pantrypal_app:               # logical name for your Streamlit app
+    type: streamlit            # must be "streamlit"
+    identifier: pantrypal_app  # Snowflake object name
+    stage: pantrypal_stage     # named internal stage for your files
+    query_warehouse: DEV_WH    # replace with your warehouse
+    main_file: app.py          # entry point for your Streamlit app
+    pages_dir: pages/          # optional, remove if you have no pages/
+    external_access_integrations: []  # list any egress integrations here
+    secrets: {}                       # map any secrets you use
+    imports: []                       # e.g. ["@my_stage/util.py"]
+    artifacts: []                     # any other files to include
