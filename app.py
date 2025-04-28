@@ -289,7 +289,7 @@ try:
         st.session_state.pop("current", None)
         st.session_state.pop("temp", None)
 
-    # ── Surprise Me! ───────────────────────────────
+    # ── Surprise Me! feature ───────────────────────────────
     if do_random:
         if not ai_gen:
             st.error("⚠️ Cannot surprise — AI key missing.")
