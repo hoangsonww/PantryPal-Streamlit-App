@@ -203,7 +203,7 @@ isort .
     - Wipe all saved recipes with one click.  
 11. **Enjoy Cooking!**  
     - Get cooking with your generated recipe! 🧑‍🍳
-    - 
+    - Share your creations on social media with #PantryPal!
 
 ## ⚙️ Customization
 
