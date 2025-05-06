@@ -204,6 +204,7 @@ isort .
 11. **Enjoy Cooking!**  
     - Get cooking with your generated recipe! 🧑‍🍳
     - Share your creations on social media with #PantryPal!
+    - 
 
 ## ⚙️ Customization
 
