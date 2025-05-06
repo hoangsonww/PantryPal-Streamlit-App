@@ -17,6 +17,7 @@ Built from the frustration of “what’s for dinner?”, PantryPal combines the
   <img src="https://img.shields.io/badge/Altair-latest-F47721?style=for-the-badge&logo=altair" alt="Altair">
   <img src="https://img.shields.io/badge/Docker-Container-2496ED?style=for-the-badge&logo=docker" alt="Docker">
   <img src="https://img.shields.io/badge/Black-23.7.0-000000?style=for-the-badge" alt="Black">
+  <img src="https://img.shields.io/badge/Streamlit%20Local%20Storage-FF4B00?style=for-the-badge" alt="Streamlit Local Storage">
   <img src="https://img.shields.io/badge/License-MIT-4E9F3D?style=for-the-badge&logo=github" alt="MIT License">
 </p>
 
