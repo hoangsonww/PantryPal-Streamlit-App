@@ -18,7 +18,7 @@ from components.inputs import get_user_input
 from utils.genai_client import GenAIRecipeGenerator
 from utils.image_fetcher import UnsplashImageFetcher
 
-# ─── Inlined Storage class using browser localStorage ───────────────────
+# ─── Storage class using browser localStorage ───────────────────
 _local = LocalStorage()
 
 
