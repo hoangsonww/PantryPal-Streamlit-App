@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>true</IsPackable>
+    <Authors>Son Nguyen</Authors>
+    <PackageId>PantryPal.API</PackageId>
+    <Version>1.0.0</Version>
+    <Description>AI-powered recipe generator backend for PantryPal</Description>
+    <PackageTags>recipe;ai;dotnet;api;gemini</PackageTags>
+    <RepositoryUrl>https://github.com/hoangsonww/PantryPal-Streamlit-App</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0" PrivateAssets="all" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+</Project>

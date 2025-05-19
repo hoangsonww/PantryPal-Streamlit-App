@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d9c65b9-1d2d-4644-8c29-92f7e288da7d" name="Changes" comment="Final: App working" />
+    <list default="true" id="2d9c65b9-1d2d-4644-8c29-92f7e288da7d" name="Changes" comment="Final: App working">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +57,7 @@
       <recent name="$PROJECT_DIR$/docs/img" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.python analysis/nutrition_summary.py">
+  <component name="RunManager">
     <configuration name="python analysis/ingredient_frequency.py" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PantryPal" />
       <option name="ENV_FILES" value="" />
@@ -125,19 +127,12 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.python analysis/nutrition_summary.py" />
-        <item itemvalue="Python.python analysis/trends_over_time.py" />
-        <item itemvalue="Python.python analysis/ingredient_frequency.py" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PY-251.23774.444" />
-        <option value="bundled-python-sdk-890ed5b35930-d9c5bdb153f4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.23774.444" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PY-251.25410.122" />
+        <option value="bundled-python-sdk-880ecab49056-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.122" />
       </set>
     </attachedChunks>
   </component>
@@ -152,6 +147,7 @@
       <workItem from="1745768023046" duration="5873000" />
       <workItem from="1745774183017" duration="1438000" />
       <workItem from="1745809620617" duration="935000" />
+      <workItem from="1747625334795" duration="44000" />
     </task>
     <task id="LOCAL-00001" summary="Final: App workin">
       <option name="closed" value="true" />
