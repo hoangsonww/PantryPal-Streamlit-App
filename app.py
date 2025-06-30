@@ -20,6 +20,8 @@ from utils.image_fetcher import UnsplashImageFetcher
 
 # ─── Storage class using browser localStorage ───────────────────
 _local = LocalStorage()
+if getattr(_local, "storedItems", None) is None:
+    _local.storedItems = {}
 
 
 class Storage:
@@ -40,7 +42,13 @@ class Storage:
 
         :return: A list of recipe entries.
         """
-        raw = _local.getItem("pantrypal_history") or "[]"
+        try:
+            raw = _local.getItem("pantrypal_history") or "[]"
+        except Exception:
+            # If localStorage isn't ready or storedItems is invalid,
+            # just return an empty history.
+            return []
+
         try:
             return json.loads(raw)
         except json.JSONDecodeError:

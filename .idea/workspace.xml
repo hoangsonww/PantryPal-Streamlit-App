@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2d9c65b9-1d2d-4644-8c29-92f7e288da7d" name="Changes" comment="Final: App working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,26 +27,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.python analysis/ingredient_frequency.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.python analysis/nutrition_summary.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.python analysis/trends_over_time.py.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;/Users/davidnguyen/Library/Application Support/JetBrains/PyCharm2024.2/plugins/Shell Script/shellcheck&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/davidnguyen/PycharmProjects/PantryPal/.github&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.updates&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.python analysis/ingredient_frequency.py.executor": "Run",
+    "Python.python analysis/nutrition_summary.py.executor": "Run",
+    "Python.python analysis/trends_over_time.py.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHELLCHECK.PATH": "/Users/davidnguyen/Library/Application Support/JetBrains/PyCharm2024.2/plugins/Shell Script/shellcheck",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/davidnguyen/PycharmProjects/PantryPal/.github",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.updates",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.github" />
@@ -57,7 +59,7 @@
       <recent name="$PROJECT_DIR$/docs/img" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.python analysis/ingredient_frequency.py">
     <configuration name="python analysis/ingredient_frequency.py" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PantryPal" />
       <option name="ENV_FILES" value="" />
@@ -131,8 +133,9 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PY-251.25410.122" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.141" />
         <option value="bundled-python-sdk-880ecab49056-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.122" />
+        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
       </set>
     </attachedChunks>
   </component>
@@ -148,6 +151,8 @@
       <workItem from="1745774183017" duration="1438000" />
       <workItem from="1745809620617" duration="935000" />
       <workItem from="1747625334795" duration="44000" />
+      <workItem from="1747625389960" duration="150000" />
+      <workItem from="1751305615759" duration="202000" />
     </task>
     <task id="LOCAL-00001" summary="Final: App workin">
       <option name="closed" value="true" />
@@ -453,7 +458,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745810274689</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1747625462802</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1747625462802</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Final: App working">
+      <option name="closed" value="true" />
+      <created>1747625525054</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1747625525054</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
