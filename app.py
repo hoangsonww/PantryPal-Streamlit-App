@@ -416,7 +416,7 @@ try:
                     Get started by adding ingredients in thesidebar<br/>
                     and clicking <strong>🍴 Generate Recipe</strong>.
                   </p>
-                  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2JzZ2RnZDFoM2dnYnJyNnRiaTJhY3lxZ3VhNzc4MWVqZGpsN215OCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/vdLUkluR3DYcsDcKP1/giphy.gif"
+                  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXd1eGltdmc3ajdoMGx2ZnVmaXl1NzhhdGNtMHFrczcyYWluNTZ0dyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Rm3AnLkH6Oy7bwFOXS/giphy.gif"
                        alt="Cooking GIF"
                        style="max-width:300px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);" />
                 </div>
