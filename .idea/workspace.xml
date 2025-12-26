@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d9c65b9-1d2d-4644-8c29-92f7e288da7d" name="Changes" comment="Final: App working">
+    <list default="true" id="2d9c65b9-1d2d-4644-8c29-92f7e288da7d" name="Changes" comment="feat(api-ui): fix type errors and add null checks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/genai_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/genai_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +35,7 @@
     "Python.python analysis/trends_over_time.py.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHELLCHECK.PATH": "/Users/davidnguyen/Library/Application Support/JetBrains/PyCharm2024.2/plugins/Shell Script/shellcheck",
     "git-widget-placeholder": "master",
@@ -133,9 +134,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.141" />
-        <option value="bundled-python-sdk-880ecab49056-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.122" />
-        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-PY-252.27397.106" />
+        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
       </set>
     </attachedChunks>
   </component>
@@ -152,7 +152,8 @@
       <workItem from="1745809620617" duration="935000" />
       <workItem from="1747625334795" duration="44000" />
       <workItem from="1747625389960" duration="150000" />
-      <workItem from="1751305615759" duration="202000" />
+      <workItem from="1751305615759" duration="275000" />
+      <workItem from="1766722556076" duration="596000" />
     </task>
     <task id="LOCAL-00001" summary="Final: App workin">
       <option name="closed" value="true" />
@@ -474,7 +475,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747625525054</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="feat(api-ui): fix type errors and add null checks">
+      <option name="closed" value="true" />
+      <created>1751305884844</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1751305884844</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,11 +503,20 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Final: App workin" />
     <MESSAGE value="Final: App working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final: App working" />
+    <MESSAGE value="feat(api-ui): fix type errors and add null checks" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(api-ui): fix type errors and add null checks" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PantryPal$python_analysis_ingredient_frequency_py.coverage" NAME="python analysis/ingredient_frequency.py Coverage Results" MODIFIED="1745773543327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PantryPal$python_analysis_nutrition_summary_py.coverage" NAME="python analysis/nutrition_summary.py Coverage Results" MODIFIED="1745773863220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/PantryPal$python_analysis_trends_over_time_py.coverage" NAME="python analysis/trends_over_time.py Coverage Results" MODIFIED="1745773553822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>
